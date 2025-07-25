@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 /* Custom variant for dark mode */
 @variant dark (&:is(.dark *));
 
@@ -22,7 +21,7 @@
   --color-popover-foreground: oklch(0.11 0.084 213);
 
   /* Brand Colors */
-  --color-primary: oklch(0.6 0.19 217);
+  --color-primary: oklch(0.19 0.04 180);
   --color-primary-foreground: oklch(0.98 0 0);
   --color-primary-glow: oklch(0.7 0.19 217);
 

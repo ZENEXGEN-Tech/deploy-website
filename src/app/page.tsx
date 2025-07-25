@@ -3,11 +3,14 @@ import { ServicesSection } from "@/components/home/ServicesSection";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail } from "lucide-react";
 import Image from "next/image";
+import Spline from "@splinetool/react-spline/next";
+import SplineScene from "@/components/SplineScene";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <HeroSection />
+      <SplineScene />
+      {/* <HeroSection /> */}
       <ServicesSection />
       {/*  <WhyZenexgenSection />
       <TestimonialsSection /> */}

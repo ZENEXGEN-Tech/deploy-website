@@ -1,0 +1,360 @@
+"use client";
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  Send,
+  MessageCircle,
+  Users,
+  Briefcase,
+} from "lucide-react";
+import { toast } from "sonner";
+
+const contactInfo = [
+  {
+    icon: Mail,
+    title: "Email Us",
+    content: "hello@zenexgen.com",
+    description: "Send us an email anytime",
+  },
+  {
+    icon: Phone,
+    title: "Call Us",
+    content: "+1 (555) 123-4567",
+    description: "Mon-Fri from 8am to 6pm PST",
+  },
+  {
+    icon: MapPin,
+    title: "Visit Us",
+    content: "DHA Phase 8, Al Murtaza Commercial",
+    description: "Karachi, Pakistan",
+  },
+  {
+    icon: Clock,
+    title: "Business Hours",
+    content: "Mon-Fri 9AM-5PM PST",
+    description: "We respond within 24 hours",
+  },
+];
+
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    inquiryType: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate form submission
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    toast.success("Message sent successfully!");
+
+    setFormData({
+      name: "",
+      email: "",
+      company: "",
+      inquiryType: "",
+      message: "",
+    });
+    setIsSubmitting(false);
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="pt-24 pb-16 bg-gradient-to-br from-background to-muted/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <Badge variant="secondary" className="mb-4">
+              Get In Touch
+            </Badge>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Let's Build <span className="text-gradient">Something Great</span>
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Ready to transform your business with intelligent software
+              solutions? We'd love to hear about your project and discuss how we
+              can help.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form & Info */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Contact Form */}
+            <div>
+              <div className="mb-8">
+                <h2 className="text-3xl font-bold mb-4">Send us a message</h2>
+                <p className="text-muted-foreground">
+                  Fill out the form below and we'll get back to you as soon as
+                  possible.
+                </p>
+              </div>
+
+              <Card className="card-glass">
+                <CardContent className="p-8">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="name">Name *</Label>
+                        <Input
+                          id="name"
+                          type="text"
+                          placeholder="Your full name"
+                          value={formData.name}
+                          onChange={(e) =>
+                            handleInputChange("name", e.target.value)
+                          }
+                          required
+                          className="mt-1"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="email">Email *</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="your@email.com"
+                          value={formData.email}
+                          onChange={(e) =>
+                            handleInputChange("email", e.target.value)
+                          }
+                          required
+                          className="mt-1"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="company">Company</Label>
+                      <Input
+                        id="company"
+                        type="text"
+                        placeholder="Your company name"
+                        value={formData.company}
+                        onChange={(e) =>
+                          handleInputChange("company", e.target.value)
+                        }
+                        className="mt-1"
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="inquiryType">Inquiry Type *</Label>
+                      <Select
+                        value={formData.inquiryType}
+                        onValueChange={(value) =>
+                          handleInputChange("inquiryType", value)
+                        }
+                        required
+                      >
+                        <SelectTrigger className="mt-1">
+                          <SelectValue placeholder="Select an inquiry type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="custom-software">
+                            Custom Software Development
+                          </SelectItem>
+                          <SelectItem value="ai-ml">
+                            AI & Machine Learning
+                          </SelectItem>
+                          <SelectItem value="web-mobile">
+                            Web & Mobile Apps
+                          </SelectItem>
+                          <SelectItem value="automation">
+                            Automation & Digital Transformation
+                          </SelectItem>
+                          <SelectItem value="consultation">
+                            Technical Consultation
+                          </SelectItem>
+                          <SelectItem value="partnership">
+                            Partnership Opportunities
+                          </SelectItem>
+                          <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="message">Message *</Label>
+                      <Textarea
+                        id="message"
+                        placeholder="Tell us about your project, goals, and how we can help..."
+                        value={formData.message}
+                        onChange={(e) =>
+                          handleInputChange("message", e.target.value)
+                        }
+                        required
+                        className="mt-1 min-h-[120px]"
+                      />
+                    </div>
+
+                    <Button
+                      type="submit"
+                      className="w-full btn-hero group"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        "Sending..."
+                      ) : (
+                        <>
+                          Send Message
+                          <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </>
+                      )}
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Contact Information */}
+            <div>
+              <div className="mb-8">
+                <h2 className="text-3xl font-bold mb-4">Get in touch</h2>
+                <p className="text-muted-foreground">
+                  Choose the best way to reach us. We're here to help and answer
+                  any questions you might have.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                {contactInfo.map((info) => (
+                  <Card key={info.title} className="card-glass">
+                    <CardContent className="p-6">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                          <info.icon className="h-6 w-6 text-primary-foreground" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-lg mb-1">
+                            {info.title}
+                          </h3>
+                          <p className="text-foreground font-medium mb-1">
+                            {info.content}
+                          </p>
+                          <p className="text-muted-foreground text-sm">
+                            {info.description}
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Quick Contact Options */}
+              <div className="mt-8">
+                <h3 className="text-xl font-semibold mb-4">
+                  Prefer to talk directly?
+                </h3>
+                <div className="space-y-3">
+                  <Button variant="outline" className="w-full justify-start">
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    Schedule a Discovery Call
+                  </Button>
+                  <Button variant="outline" className="w-full justify-start">
+                    <Users className="mr-2 h-4 w-4" />
+                    Meet Our Team
+                  </Button>
+                  <Button variant="outline" className="w-full justify-start">
+                    <Briefcase className="mr-2 h-4 w-4" />
+                    Request a Proposal
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section className="py-24 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Find Us</h2>
+            <p className="text-muted-foreground">
+              Located in the heart of San Francisco's tech district
+            </p>
+          </div>
+
+          <Card className="card-glass">
+            <CardContent className="p-0">
+              <div className="bg-gradient-to-br from-primary/20 to-primary-glow/20 h-96 rounded-lg flex items-center justify-center">
+                <div className="text-center">
+                  <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">
+                    ZENEXGEN Headquarters
+                  </h3>
+                  <p className="text-muted-foreground">
+                    DHA Phase 8, Al Murtaza Commercial
+                  </p>
+                  <p className="text-muted-foreground">Karachi, Pakistan</p>
+
+                  <Button variant="outline" className="mt-4">
+                    Get Directions
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* FAQ or Business Hours */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Ready to Get Started?
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              Whether you have a specific project in mind or just want to
+              explore possibilities, we're excited to discuss how ZENEXGEN can
+              help transform your business.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="btn-hero">
+                Start Your Project
+              </Button>
+              <Button variant="outline" size="lg">
+                Download Our Brochure
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Contact;
