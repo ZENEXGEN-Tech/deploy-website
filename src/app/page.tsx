@@ -1,21 +1,18 @@
-import { HeroSection } from "@/components/home/HeroSection";
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail } from "lucide-react";
-import Image from "next/image";
-import Spline from "@splinetool/react-spline/next";
 import SplineScene from "@/components/SplineScene";
+import { WhyZenexgenSection } from "@/components/home/WhyZenexgeSection";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       <SplineScene />
-      {/* <HeroSection /> */}
       <ServicesSection />
-      {/*  <WhyZenexgenSection />
-      <TestimonialsSection /> */}
+      <WhyZenexgenSection />
+      <TestimonialsSection />
 
-      {/* CTA Section */}
       <section className="py-24 bg-gradient-to-br from-primary/10 to-primary-glow/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto">

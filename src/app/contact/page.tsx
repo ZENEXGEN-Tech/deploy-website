@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +15,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
   Mail,
   Phone,
   MapPin,
@@ -22,8 +31,13 @@ import {
   MessageCircle,
   Users,
   Briefcase,
+  CheckCircle,
 } from "lucide-react";
 import { toast } from "sonner";
+import {
+  contactFormSchema,
+  type ContactFormData,
+} from "@/lib/validations/contact";
 
 const contactInfo = [
   {
@@ -52,36 +66,65 @@ const contactInfo = [
   },
 ];
 
+const inquiryOptions = [
+  {
+    value: "Custom Software Development",
+    label: "Custom Software Development",
+  },
+  { value: "AI & Machine Learning", label: "AI & Machine Learning" },
+  { value: "Web & Mobile Apps", label: "Web & Mobile Apps" },
+  {
+    value: "Automation & Digital Transformation",
+    label: "Automation & Digital Transformation",
+  },
+  { value: "Technical Consultation", label: "Technical Consultation" },
+  { value: "Partnership Opportunities", label: "Partnership Opportunities" },
+  { value: "Other", label: "Other" },
+];
+
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    inquiryType: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    toast.success("Message sent successfully!");
-
-    setFormData({
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
       name: "",
       email: "",
       company: "",
       inquiryType: "",
       message: "",
-    });
-    setIsSubmitting(false);
-  };
+    },
+  });
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+  const { isSubmitting } = form.formState;
+
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      toast.success(
+        "Message sent successfully! We'll get back to you within 24 hours.",
+        {
+          icon: <CheckCircle className="h-4 w-4" />,
+          duration: 5000,
+        }
+      );
+
+      form.reset();
+    } catch (error) {
+      toast.error(
+        "Failed to send message. Please try again or contact us directly."
+      );
+      console.error("Form submission error:", error);
+    }
   };
 
   return (
@@ -118,121 +161,134 @@ const Contact = () => {
 
               <Card className="card-glass">
                 <CardContent className="p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="name">Name *</Label>
-                        <Input
-                          id="name"
-                          type="text"
-                          placeholder="Your full name"
-                          value={formData.name}
-                          onChange={(e) =>
-                            handleInputChange("name", e.target.value)
-                          }
-                          required
-                          className="mt-1"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="email">Email *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="your@email.com"
-                          value={formData.email}
-                          onChange={(e) =>
-                            handleInputChange("email", e.target.value)
-                          }
-                          required
-                          className="mt-1"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="company">Company</Label>
-                      <Input
-                        id="company"
-                        type="text"
-                        placeholder="Your company name"
-                        value={formData.company}
-                        onChange={(e) =>
-                          handleInputChange("company", e.target.value)
-                        }
-                        className="mt-1"
-                      />
-                    </div>
-
-                    <div>
-                      <Label htmlFor="inquiryType">Inquiry Type *</Label>
-                      <Select
-                        value={formData.inquiryType}
-                        onValueChange={(value) =>
-                          handleInputChange("inquiryType", value)
-                        }
-                        required
-                      >
-                        <SelectTrigger className="mt-1">
-                          <SelectValue placeholder="Select an inquiry type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="custom-software">
-                            Custom Software Development
-                          </SelectItem>
-                          <SelectItem value="ai-ml">
-                            AI & Machine Learning
-                          </SelectItem>
-                          <SelectItem value="web-mobile">
-                            Web & Mobile Apps
-                          </SelectItem>
-                          <SelectItem value="automation">
-                            Automation & Digital Transformation
-                          </SelectItem>
-                          <SelectItem value="consultation">
-                            Technical Consultation
-                          </SelectItem>
-                          <SelectItem value="partnership">
-                            Partnership Opportunities
-                          </SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="message">Message *</Label>
-                      <Textarea
-                        id="message"
-                        placeholder="Tell us about your project, goals, and how we can help..."
-                        value={formData.message}
-                        onChange={(e) =>
-                          handleInputChange("message", e.target.value)
-                        }
-                        required
-                        className="mt-1 min-h-[120px]"
-                      />
-                    </div>
-
-                    <Button
-                      type="submit"
-                      className="w-full btn-hero group"
-                      disabled={isSubmitting}
+                  <Form {...form}>
+                    <form
+                      onSubmit={form.handleSubmit(onSubmit)}
+                      className="space-y-6"
                     >
-                      {isSubmitting ? (
-                        "Sending..."
-                      ) : (
-                        <>
-                          Send Message
-                          <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        </>
-                      )}
-                    </Button>
-                  </form>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <FormField
+                          control={form.control}
+                          name="name"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Name *</FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Your full name"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Email *</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="email"
+                                  placeholder="your@email.com"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <FormField
+                        control={form.control}
+                        name="company"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Company</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Your company name"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="inquiryType"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Inquiry Type *</FormLabel>
+                            <Select
+                              onValueChange={field.onChange}
+                              value={field.value}
+                            >
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select an inquiry type" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {inquiryOptions.map((option) => (
+                                  <SelectItem
+                                    key={option.value}
+                                    value={option.value}
+                                  >
+                                    {option.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="message"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Message *</FormLabel>
+                            <FormControl>
+                              <Textarea
+                                placeholder="Tell us about your project, goals, and how we can help..."
+                                className="min-h-[120px]"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <Button
+                        type="submit"
+                        className="w-full btn-hero group"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? (
+                          "Sending..."
+                        ) : (
+                          <>
+                            Send Message
+                            <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          </>
+                        )}
+                      </Button>
+                    </form>
+                  </Form>
                 </CardContent>
               </Card>
             </div>
 
+            {/* Rest of your component remains the same */}
             <div>
               <div className="mb-8">
                 <h2 className="text-3xl font-bold mb-4">Get in touch</h2>
@@ -291,6 +347,7 @@ const Contact = () => {
         </div>
       </section>
 
+      {/* Rest of your sections remain the same */}
       <section className="py-24 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -315,7 +372,6 @@ const Contact = () => {
                 ></iframe>
               </div>
 
-              {/* Optional: Add location info overlay */}
               <div className="p-6 bg-background/95 backdrop-blur-sm border-t">
                 <div className="flex items-center justify-between">
                   <div>
