@@ -23,6 +23,7 @@ export const Navigation = () => {
     { name: "Services", href: "/services" },
     { name: "Careers", href: "/careers" },
     { name: "Contact", href: "/contact" },
+    { name: "Blog", href: "/blog" },
   ];
 
   const isActive = (path: string) => {
