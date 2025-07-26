@@ -18,13 +18,13 @@ const teamMembers = [
     location: "San Francisco, CA",
   },
   {
-    name: "Priya Patel",
+    name: "Mashal Khan",
     role: "CTO",
     bio: "AI/ML expert and full-stack architect",
     location: "Austin, TX",
   },
   {
-    name: "Jordan Kim",
+    name: "Aryan khan",
     role: "Lead Designer",
     bio: "UX/UI specialist creating beautiful experiences",
     location: "New York, NY",
