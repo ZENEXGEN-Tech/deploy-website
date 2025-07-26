@@ -25,13 +25,17 @@ export const Navigation = () => {
     { name: "Contact", href: "/contact" },
   ];
 
-  const isActive = (path: string) => location.startsWith(path);
+  const isActive = (path: string) => {
+    if (path === "/") {
+      return location === "/";
+    }
+    return location.startsWith(path);
+  };
 
   return (
     <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-xl border-b border-border/50 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-sm">
@@ -41,7 +45,6 @@ export const Navigation = () => {
             <span className="text-xl font-bold text-gradient">ZENEXGEN</span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
@@ -59,7 +62,6 @@ export const Navigation = () => {
             ))}
           </div>
 
-          {/* Theme Toggle & Mobile Menu */}
           <div className="flex items-center space-x-4">
             {mounted && (
               <Button
@@ -76,7 +78,6 @@ export const Navigation = () => {
               </Button>
             )}
 
-            {/* Mobile menu button */}
             <div className="md:hidden">
               <Button
                 variant="ghost"
@@ -94,7 +95,6 @@ export const Navigation = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 border-t border-border/50">
