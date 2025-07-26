@@ -66,7 +66,6 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast.success("Message sent successfully!");
@@ -87,7 +86,6 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-background to-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -106,11 +104,9 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Contact Form & Info */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Contact Form */}
             <div>
               <div className="mb-8">
                 <h2 className="text-3xl font-bold mb-4">Send us a message</h2>
@@ -237,7 +233,6 @@ const Contact = () => {
               </Card>
             </div>
 
-            {/* Contact Information */}
             <div>
               <div className="mb-8">
                 <h2 className="text-3xl font-bold mb-4">Get in touch</h2>
@@ -272,7 +267,6 @@ const Contact = () => {
                 ))}
               </div>
 
-              {/* Quick Contact Options */}
               <div className="mt-8">
                 <h3 className="text-xl font-semibold mb-4">
                   Prefer to talk directly?
@@ -297,30 +291,51 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map Section */}
       <section className="py-24 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Find Us</h2>
             <p className="text-muted-foreground">
-              Located in the heart of San Francisco's tech district
+              Located in DHA Phase 8, Karachi, Pakistan
             </p>
           </div>
 
           <Card className="card-glass">
             <CardContent className="p-0">
-              <div className="bg-gradient-to-br from-primary/20 to-primary-glow/20 h-96 rounded-lg flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">
-                    ZENEXGEN Headquarters
-                  </h3>
-                  <p className="text-muted-foreground">
-                    DHA Phase 8, Al Murtaza Commercial
-                  </p>
-                  <p className="text-muted-foreground">Karachi, Pakistan</p>
+              <div className="h-96 rounded-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.727234567!2d67.0731!3d24.8607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDUxJzM4LjUiTiA2N8KwMDQnMjMuMiJF!5e0!3m2!1sen!2s!4v1640000000000!5m2!1sen!2s"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-lg"
+                ></iframe>
+              </div>
 
-                  <Button variant="outline" className="mt-4">
+              {/* Optional: Add location info overlay */}
+              <div className="p-6 bg-background/95 backdrop-blur-sm border-t">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">
+                      ZENEXGEN Headquarters
+                    </h3>
+                    <p className="text-muted-foreground">
+                      DHA Phase 8, Al Murtaza Commercial
+                    </p>
+                    <p className="text-muted-foreground">Karachi, Pakistan</p>
+                  </div>
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      window.open(
+                        "https://maps.google.com/?q=DHA+Phase+8+Al+Murtaza+Commercial+Karachi+Pakistan",
+                        "_blank"
+                      )
+                    }
+                  >
                     Get Directions
                   </Button>
                 </div>
@@ -330,7 +345,6 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* FAQ or Business Hours */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
