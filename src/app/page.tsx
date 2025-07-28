@@ -6,11 +6,14 @@ import { WhyZenexgenSection } from "@/components/home/WhyZenexgeSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { MissionVisionSection } from "@/components/home/MissionVisionSection";
 import { Globe } from "@/components/magicui/globe";
+import ClientLogos from "@/components/home/ClientsSection";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       <SplineScene />
+      <ClientLogos />
+
       <ServicesSection />
       <MissionVisionSection />
       <WhyZenexgenSection />
