@@ -14,6 +14,7 @@ import {
   Trophy,
   ArrowRight,
 } from "lucide-react";
+import { Banner } from "@/components/Banner";
 
 const openPositions = [
   {
@@ -166,23 +167,13 @@ const Careers = () => {
 
   return (
     <div className="min-h-screen">
-      <section className="pt-24 pb-16 bg-gradient-to-br from-background to-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4">
-              Join Our Team
-            </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Shape the <span className="text-gradient">Future</span> with Us
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Be part of a team that's revolutionizing how businesses operate
-              through intelligent software solutions. Build your career while
-              building the future.
-            </p>
-          </div>
-        </div>
-      </section>
+      <Banner
+        title=<>
+          Join <span className="text-gradient">Our Team</span>
+        </>
+        badge="Careers"
+        description="Be part of a team that's revolutionizing how businesses operate through intelligent software solutions. Build your career while building the future."
+      />
 
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -9,6 +9,7 @@ import {
   Calendar,
   MapPin,
 } from "lucide-react";
+import { Banner } from "@/components/Banner";
 
 const teamMembers = [
   {
@@ -88,23 +89,13 @@ const milestones = [
 const About = () => {
   return (
     <div className="min-h-screen">
-      <section className="pt-24 pb-16 bg-gradient-to-br from-background to-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4">
-              About ZENEXGEN
-            </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Building the <span className="text-gradient">Future</span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              We're a team of passionate innovators, engineers, and visionaries
-              dedicated to creating software that doesn't just work—it
-              transforms.
-            </p>
-          </div>
-        </div>
-      </section>
+      <Banner
+        title=<>
+          Building the <span className="text-gradient">Future</span>
+        </>
+        badge="About ZENEXGEN"
+        description="We're a team of passionate innovators, engineers, and visionaries dedicated to creating software that doesn't just work—it transforms."
+      />
 
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

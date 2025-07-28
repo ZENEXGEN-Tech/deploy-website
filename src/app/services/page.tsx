@@ -15,6 +15,7 @@ import {
   Cpu,
 } from "lucide-react";
 import Link from "next/link";
+import { Banner } from "@/components/Banner";
 
 const services = [
   {
@@ -135,41 +136,14 @@ export default function Services() {
       : services.filter((service) => service.category === activeCategory);
 
   return (
-    <div className="min-h-screen pt-20">
-      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(#ffffff1a_1px,transparent_1px)] bg-[size:24px_24px] opacity-10" />
-
-      {/* Animated Glow Effects */}
-      <div className="absolute -top-40 -left-40 h-96 w-96 bg-pink-500 rounded-full blur-[120px] opacity-30 z-0 animate-pulse" />
-      <div className="absolute bottom-0 right-0 h-80 w-80 bg-blue-500 rounded-full blur-[100px] opacity-20 z-0 animate-ping" />
-
-      <section className="relative z-10 py-24 text-center">
-        <motion.h1
-          className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Our Services
-        </motion.h1>
-
-        {/* Neon Pulse Line */}
-        <motion.div
-          className="mx-auto mt-4 h-1 w-24 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 animate-pulse shadow-lg"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-        />
-
-        <motion.p
-          className="mt-8 text-xl max-w-3xl mx-auto text-white/80"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-        >
-          Comprehensive technology solutions designed to transform your business
-          and drive sustainable growth in the digital age.
-        </motion.p>
-      </section>
+    <div className="min-h-screen">
+      <Banner
+        title=<>
+          We <span className="text-gradient">Build</span> the Future
+        </>
+        badge="Our Services"
+        description="Comprehensive technology solutions designed to transform your business and drive sustainable growth in the digital age."
+      />
 
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -210,7 +184,7 @@ export default function Services() {
                     </div>
                   </div>
 
-                  <p className="text-muted-foreground mb-6 leading-relaxed flex-1">
+                  <p className="text-muted-foreground mb-6 text-center leading-relaxed flex-1">
                     {service.shortDescription}
                   </p>
 

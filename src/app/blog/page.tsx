@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { blogPosts } from "@/utils/data";
+import { Banner } from "@/components/Banner";
+import { de } from "zod/v4/locales";
 
 const categories = [
   "All",
@@ -27,18 +29,14 @@ export default function Blog() {
       : blogPosts.filter((post) => post.category === activeCategory);
 
   return (
-    <div className="min-h-screen pt-20">
-      <section className="py-20 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gradient">
-            ZENEXGEN Blog
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Insights, trends, and innovations from the world of technology. Stay
-            updated with our latest thoughts and discoveries.
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen">
+      <Banner
+        title=<>
+          Latest Tech <span className="text-gradient">Blogs</span>
+        </>
+        description="Insights, trends, and innovations from the world of technology. Stay updated with our latest thoughts and discoveries."
+        badge="Our Blog"
+      />
 
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">

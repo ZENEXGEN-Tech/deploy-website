@@ -1,28 +1,17 @@
-"use client";
-
 import * as React from "react";
-import { motion } from "framer-motion";
+
 import { cn } from "@/lib/utils";
 
-function Card({ className, children, ...props }: React.ComponentProps<"div">) {
+function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <motion.div
+    <div
       data-slot="card"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      whileHover={{ scale: 1.02, rotateX: 2, rotateY: 2 }}
       className={cn(
-        "group bg-white/10 text-white backdrop-blur-md relative overflow-hidden rounded-2xl border border-white/20 p-6 shadow-xl transition-all duration-500 hover:shadow-2xl hover:border-white/40",
-        "before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-transparent before:to-pink-500/10 before:blur-2xl before:z-[-1]",
+        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
         className
       )}
       {...props}
-    >
-      {/* Glow Ring Effect */}
-      <div className="absolute -inset-px z-[-1] rounded-[inherit] bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 transition duration-500 group-hover:opacity-40 blur-sm" />
-      {children}
-    </motion.div>
+    />
   );
 }
 
@@ -30,7 +19,10 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-header"
-      className={cn("grid gap-1.5 mb-4", className)}
+      className={cn(
+        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
+        className
+      )}
       {...props}
     />
   );
@@ -38,12 +30,9 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
 
 function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <motion.h3
+    <div
       data-slot="card-title"
-      className={cn("text-xl font-bold tracking-tight", className)}
-      initial={{ opacity: 0, y: -10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2 }}
+      className={cn("leading-none font-semibold", className)}
       {...props}
     />
   );
@@ -51,12 +40,9 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
 
 function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <motion.p
+    <div
       data-slot="card-description"
-      className={cn("text-sm text-white/70", className)}
-      initial={{ opacity: 0, y: -10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.4 }}
+      className={cn("text-muted-foreground text-sm", className)}
       {...props}
     />
   );
@@ -79,7 +65,7 @@ function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-content"
-      className={cn("text-white", className)}
+      className={cn("px-6", className)}
       {...props}
     />
   );
@@ -89,7 +75,7 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-footer"
-      className={cn("flex items-center justify-between pt-4", className)}
+      className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
       {...props}
     />
   );

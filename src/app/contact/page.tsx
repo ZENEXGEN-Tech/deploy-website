@@ -38,6 +38,8 @@ import {
   contactFormSchema,
   type ContactFormData,
 } from "@/lib/validations/contact";
+import { Banner } from "@/components/Banner";
+import { de } from "zod/v4/locales";
 
 const contactInfo = [
   {
@@ -129,23 +131,13 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
-      <section className="pt-24 pb-16 bg-gradient-to-br from-background to-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4">
-              Get In Touch
-            </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Let's Build <span className="text-gradient">Something Great</span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Ready to transform your business with intelligent software
-              solutions? We'd love to hear about your project and discuss how we
-              can help.
-            </p>
-          </div>
-        </div>
-      </section>
+      <Banner
+        title=<>
+          Let's Build <span className="text-gradient">Something Great</span>
+        </>
+        description="Ready to transform your business with intelligent software solutions? We'd love to hear about your project and discuss how we can help."
+        badge="Get In Touch"
+      />
 
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
