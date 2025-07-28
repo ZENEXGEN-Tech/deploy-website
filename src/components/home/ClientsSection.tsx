@@ -6,43 +6,43 @@ const ClientLogos = () => {
   const clients = [
     {
       name: "TechCorp",
-      logo: "https://via.placeholder.com/150x80/4F46E5/FFFFFF?text=TechCorp",
+      logo: "https://resend.com/static/customers/warner-bros.svg",
     },
     {
       name: "InnovateLab",
-      logo: "https://via.placeholder.com/150x80/EF4444/FFFFFF?text=InnovateLab",
+      logo: "https://resend.com/static/customers/gumroad.svg",
     },
     {
       name: "DataFlow",
-      logo: "https://via.placeholder.com/150x80/10B981/FFFFFF?text=DataFlow",
+      logo: "https://resend.com/static/customers/max.svg",
     },
     {
       name: "CloudSync",
-      logo: "https://via.placeholder.com/150x80/F59E0B/FFFFFF?text=CloudSync",
+      logo: "https://resend.com/static/customers/osnplus.svg",
     },
     {
       name: "NextGen",
-      logo: "https://via.placeholder.com/150x80/8B5CF6/FFFFFF?text=NextGen",
+      logo: "https://resend.com/static/customers/totvs.svg",
     },
     {
       name: "DigitalEdge",
-      logo: "https://via.placeholder.com/150x80/06B6D4/FFFFFF?text=DigitalEdge",
+      logo: "https://resend.com/static/customers/voahoteis.svg",
     },
     {
       name: "SmartSys",
-      logo: "https://via.placeholder.com/150x80/EC4899/FFFFFF?text=SmartSys",
+      logo: "https://resend.com/static/customers/sameday.svg",
     },
     {
       name: "FutureTech",
-      logo: "https://via.placeholder.com/150x80/84CC16/FFFFFF?text=FutureTech",
+      logo: "https://resend.com/static/customers/briefer.svg",
     },
     {
       name: "CodeBase",
-      logo: "https://via.placeholder.com/150x80/F97316/FFFFFF?text=CodeBase",
+      logo: "https://resend.com/static/customers/booth.svg",
     },
     {
       name: "WebForce",
-      logo: "https://via.placeholder.com/150x80/6366F1/FFFFFF?text=WebForce",
+      logo: "https://resend.com/static/customers/lastro.svg",
     },
   ];
 
@@ -66,7 +66,7 @@ const ClientLogos = () => {
             {clients.map((client, index) => (
               <div
                 key={`${client.name}-${index}`}
-                className="mx-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-6 border border-gray-200 flex items-center justify-center min-w-[180px] h-20"
+                className="mx-6 bg-black rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-6 border border-gray-200 flex items-center justify-center min-w-[180px] h-20"
               >
                 <img
                   src={client.logo}
@@ -92,7 +92,7 @@ const ClientLogos = () => {
               .map((client, index) => (
                 <div
                   key={`${client.name}-reverse-${index}`}
-                  className="mx-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-6 border border-gray-200 flex items-center justify-center min-w-[180px] h-20"
+                  className="mx-6 bg-teal-500 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-6 border border-gray-200 flex items-center justify-center min-w-[180px] h-20"
                 >
                   <img
                     src={client.logo}
