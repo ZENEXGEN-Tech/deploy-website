@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+import React from "react";
 import { Target, Eye, Heart, Lightbulb } from "lucide-react";
 
 const missionVisionData = [
@@ -12,7 +12,6 @@ const missionVisionData = [
       "Foster business growth",
       "Enable digital transformation",
     ],
-    gradient: "from-blue-500 to-purple-600",
   },
   {
     icon: Eye,
@@ -24,7 +23,6 @@ const missionVisionData = [
       "Future-focused innovation",
       "Transformative impact",
     ],
-    gradient: "from-purple-500 to-pink-600",
   },
 ];
 
@@ -45,97 +43,125 @@ const values = [
 
 export const MissionVisionSection = () => {
   return (
-    <section className="py-24 bg-gradient-to-br from-background to-muted/20">
+    <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Our <span className="text-gradient">Purpose</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Driven by purpose, guided by vision. We believe in creating
-            technology that makes a meaningful difference in the world.
+            technology that makes a meaningful difference.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          {missionVisionData.map((item, index) => (
-            <Card
-              key={item.title}
-              className="card-glass card-hover group h-full"
-            >
-              <CardContent className="p-8 h-full flex flex-col">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="flex-shrink-0">
-                    <div
-                      className={`w-16 h-16 b rounded-2xl bg-gradient-primary flex items-center justify-center group-hover:shadow-glow transition-all duration-300`}
-                    >
-                      <item.icon className="h-8 w-8 text-white" />
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-4xl font-bold group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                  </div>
-                </div>
+        {/* Bento Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-16">
+          {/* Mission - Large Left Grid */}
+          <div className="lg:col-span-7 rounded-2xl p-8">
+            <div className="flex items-center mb-6">
+              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                <Target className="w-6 h-6 text-blue-600" />
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900">Our Mission</h3>
+            </div>
 
-                <p className="text-muted-foreground mb-6 leading-relaxed text-lg flex-1">
-                  {item.description}
-                </p>
+            <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+              {missionVisionData[0].description}
+            </p>
 
-                <div className="space-y-3">
-                  {item.highlights.map((highlight, idx) => (
-                    <div
-                      key={highlight}
-                      className="flex items-center text-sm font-medium"
-                    >
-                      <div
-                        className={`w-2 h-2 rounded-full bg-gradient-primary mr-3`}
-                      />
-                      <span className="text-foreground/80">{highlight}</span>
-                    </div>
-                  ))}
+            <div className="space-y-3">
+              {missionVisionData[0].highlights.map((highlight, idx) => (
+                <div key={highlight} className="flex items-center">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-3" />
+                  <span className="text-gray-700">{highlight}</span>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Vision - Medium Right Grid */}
+          <div className="lg:col-span-5 rounded-2xl p-8 text-black">
+            <div className="flex items-center mb-6 ">
+              <div className="w-12 h-12 bg-teal-500 rounded-xl flex items-center justify-center mr-4">
+                <Eye className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-3xl font-bold">Our Vision</h3>
+            </div>
+
+            <p className="text-lg mb-6 leading-relaxed text-gray-600">
+              {missionVisionData[1].description}
+            </p>
+
+            <div className="space-y-3">
+              {missionVisionData[1].highlights.map((highlight, idx) => (
+                <div key={highlight} className="flex items-center">
+                  <div className="w-2 h-2 bg-black rounded-full mr-3" />
+                  <span className="text-gray-600">{highlight}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
+        {/* Values Section */}
         <div className="text-center mb-12">
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            Our <span className="text-gradient">Core Values</span>
+          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Core Values
           </h3>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             The principles that guide everything we do and every decision we
             make.
           </p>
         </div>
 
+        {/* Values Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {values.map((value, index) => (
-            <Card key={value.title} className="card-glass card-hover group">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center group-hover:shadow-glow transition-all duration-300">
-                      <value.icon className="h-6 w-6 text-primary-foreground" />
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
-                      {value.title}
-                    </h4>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {value.description}
-                    </p>
-                  </div>
+            <div
+              key={value.title}
+              className={`rounded-2xl p-8 transition-all hover:scale-105 ${
+                index === 0
+                  ? "bg-white border border-gray-200 shadow-sm hover:shadow-md"
+                  : "bg-gray-900 text-white"
+              }`}
+            >
+              <div className="flex items-start space-x-4">
+                <div
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                    index === 0 ? "bg-gray-100" : "bg-white/10"
+                  }`}
+                >
+                  <value.icon
+                    className={`w-6 h-6 ${
+                      index === 0 ? "text-gray-700" : "text-white"
+                    }`}
+                  />
                 </div>
-              </CardContent>
-            </Card>
+                <div className="flex-1">
+                  <h4
+                    className={`text-2xl font-bold mb-3 ${
+                      index === 0 ? "text-gray-900" : "text-white"
+                    }`}
+                  >
+                    {value.title}
+                  </h4>
+                  <p
+                    className={`text-lg leading-relaxed ${
+                      index === 0 ? "text-gray-600" : "text-gray-300"
+                    }`}
+                  >
+                    {value.description}
+                  </p>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
 };
+
+export default MissionVisionSection;
