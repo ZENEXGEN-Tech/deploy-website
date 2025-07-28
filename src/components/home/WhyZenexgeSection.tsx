@@ -1,5 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Target, Lightbulb, Users, Rocket } from "lucide-react";
+import { CounterStat } from "@/components/home/CounterStat";
+import { Code, HeartPulse, Briefcase, Globe2 } from "lucide-react"; // You can customize icons here
 
 const values = [
   {
@@ -38,10 +40,36 @@ export const WhyZenexgenSection = () => {
             Why Choose <span className="text-gradient">ZENEXGEN</span>?
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            We don't just build software – we craft digital experiences that
-            transform businesses and create lasting impact in an ever-evolving
-            technological landscape.
+            At ZENEXGEN, we build digital solutions that feel intuitive, look
+            stunning, and help your business thrive in tomorrow’s tech
+            landscape. Because success isn’t just about code — it’s about
+            people.
           </p>
+        </div>
+        {/* Animated Stats */}
+        <div className="text-center mb-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-5xl mx-auto">
+            <CounterStat
+              value={4300}
+              label="Hours of Code"
+              icon={<Code className="w-6 h-6" />}
+            />
+            <CounterStat
+              value={97}
+              label="Client Retention Rate"
+              icon={<HeartPulse className="w-6 h-6" />}
+            />
+            <CounterStat
+              value={60}
+              label="Projects Delivered"
+              icon={<Briefcase className="w-6 h-6" />}
+            />
+            <CounterStat
+              value={12}
+              label="Industries Served"
+              icon={<Globe2 className="w-6 h-6" />}
+            />
+          </div>
         </div>
 
         {/* Values Grid */}

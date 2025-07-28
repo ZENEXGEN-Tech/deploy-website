@@ -5,6 +5,7 @@ import SplineScene from "@/components/SplineScene";
 import { WhyZenexgenSection } from "@/components/home/WhyZenexgeSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { MissionVisionSection } from "@/components/home/MissionVisionSection";
+import { Globe } from "@/components/magicui/globe";
 
 export default function Home() {
   return (
