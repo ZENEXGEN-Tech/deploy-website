@@ -20,18 +20,49 @@ export const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if scrolled more than 1/4 of viewport height
-      const scrollThreshold = window.innerHeight / 4;
+      const scrollThreshold =
+        window.innerWidth < 768
+          ? window.innerHeight / 8
+          : window.innerHeight / 4;
       setIsScrolled(window.scrollY > scrollThreshold);
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    // Check initial scroll position
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close mobile menu when clicking outside or resizing
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsOpen(false);
+      }
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+      const nav = document.getElementById("mobile-nav");
+      if (nav && !nav.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
 
   const navigation = [
     { name: "Home", href: "/" },
@@ -49,113 +80,158 @@ export const Navigation = () => {
     return location.startsWith(path);
   };
 
+  const isHomeRoute = location === "/";
+
   return (
-    <nav
-      className={cn(
-        "fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-7xl backdrop-blur-xl mt-5 rounded-2xl border-b z-100 transition-all duration-300 px-4 sm:px-6 lg:px-8",
-        isScrolled
-          ? "bg-background/80 border-border/50 shadow-lg"
-          : "bg-transparent border-transparent"
-      )}
-    >
-      <div className="flex justify-between items-center h-16 mx-auto">
-        <Link href="/" className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-sm">Z</span>
-          </div>
-          <span className="text-xl font-bold text-gradient">ZENEXGEN</span>
-        </Link>
-
-        <div className="hidden md:flex items-center space-x-8">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={cn(
-                "text-sm font-medium transition-colors duration-200",
-                isActive(item.href)
-                  ? isScrolled
-                    ? "text-primary"
-                    : "text-white"
-                  : isScrolled
-                    ? "text-muted-foreground hover:text-foreground"
-                    : "text-white/80 hover:text-white"
-              )}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-
-        <div className="flex items-center space-x-4">
-          {mounted && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className={cn(
-                "w-9 h-9 rounded-lg transition-colors duration-200",
-                !isScrolled && "text-white hover:bg-white/10"
-              )}
-            >
-              {theme === "dark" ? (
-                <Sun className="h-4 w-4" />
-              ) : (
-                <Moon className="h-4 w-4" />
-              )}
-            </Button>
-          )}
-
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(!isOpen)}
-              className={cn(
-                "w-9 h-9 rounded-lg transition-colors duration-200",
-                !isScrolled && "text-white hover:bg-white/10"
-              )}
-            >
-              {isOpen ? (
-                <X className="h-4 w-4" />
-              ) : (
-                <Menu className="h-4 w-4" />
-              )}
-            </Button>
-          </div>
-        </div>
-      </div>
-
+    <>
+      {/* Background overlay for mobile menu */}
       {isOpen && (
-        <div className="md:hidden">
-          <div
-            className={cn(
-              "px-2 pt-2 pb-3 space-y-1 border-t transition-colors duration-200",
-              isScrolled ? "border-border/50" : "border-white/20"
-            )}
-          >
+        <div
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      <nav
+        id="mobile-nav"
+        className={cn(
+          "fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-7xl backdrop-blur-xl transition-all duration-300 z-50",
+          // Better mobile margins and responsive design
+          "mt-3 mx-auto rounded-2xl border sm:mt-4 sm:mx-5 md:mt-5 md:mx-6 lg:mx-8",
+          "px-4 sm:px-6 lg:px-8",
+          isScrolled
+            ? "bg-background/90 border-border/50 shadow-lg backdrop-blur-2xl"
+            : "bg-background/10 border-white/10 backdrop-blur-md"
+        )}
+      >
+        <div className="flex justify-between items-center h-16 sm:h-18">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
+            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-sm">
+                Z
+              </span>
+            </div>
+            <span
+              className={`md:text-xl text-lg lg:text-xl font-bold ${isHomeRoute ? "text-gradient" : "text-black"}`}
+            >
+              ZENEXGEN
+            </span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                onClick={() => setIsOpen(false)}
                 className={cn(
-                  "block px-3 py-2 text-base font-medium rounded-lg transition-colors duration-200",
+                  "text-sm font-medium transition-all duration-200 relative group py-2",
                   isActive(item.href)
                     ? isScrolled
-                      ? "text-primary bg-primary/10"
-                      : "text-white bg-white/10"
+                      ? "text-primary"
+                      : "text-white"
                     : isScrolled
-                      ? "text-muted-foreground hover:text-foreground hover:bg-muted"
-                      : "text-white/80 hover:text-white hover:bg-white/10"
+                      ? "text-muted-foreground hover:text-foreground"
+                      : "text-white/80 hover:text-white"
                 )}
               >
                 {item.name}
+                <span
+                  className={cn(
+                    "absolute -bottom-1 left-0 w-full h-0.5 bg-current transform transition-all duration-200",
+                    isActive(item.href)
+                      ? "scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100"
+                  )}
+                />
               </Link>
             ))}
           </div>
+
+          {/* Right side controls */}
+          <div className="flex items-center space-x-2">
+            {/* Theme toggle */}
+            {mounted && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className={cn(
+                  "w-9 h-9 rounded-lg transition-colors duration-200 ",
+                  isScrolled ? "hover:bg-muted" : "text-white hover:bg-white/10"
+                )}
+              >
+                {theme === "dark" ? (
+                  <Sun className="h-4 w-4" />
+                ) : (
+                  <Moon className="h-4 w-4" />
+                )}
+              </Button>
+            )}
+
+            {/* Mobile menu toggle */}
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsOpen(!isOpen)}
+                className={cn(
+                  "w-9 h-9 rounded-lg transition-colors duration-200",
+                  isScrolled ? "hover:bg-muted" : "text-white hover:bg-white/10"
+                )}
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+              >
+                {isOpen ? (
+                  <X className="h-4 w-4" />
+                ) : (
+                  <Menu className="h-4 w-4" />
+                )}
+              </Button>
+            </div>
+          </div>
         </div>
-      )}
-    </nav>
+
+        {/* Mobile Dropdown Menu */}
+        <div
+          className={cn(
+            "md:hidden overflow-hidden transition-all duration-300 ease-in-out",
+            isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          )}
+        >
+          <div className="border-t border-border/20 backdrop-blur-xl">
+            <div
+              className={cn(
+                "py-4 space-y-1 ",
+                isScrolled ? "bg-transparent" : "bg-transparent"
+              )}
+            >
+              {navigation.map((item, index) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={cn(
+                    "block px-4 py-3 text-base font-medium rounded-lg mx-3 transition-all duration-200 transform",
+                    isActive(item.href)
+                      ? isScrolled
+                        ? "text-primary bg-primary/10 border-l-2 border-primary"
+                        : "text-white bg-white/10 border-l-2 border-white"
+                      : isScrolled
+                        ? "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                        : "text-white/80 hover:text-white hover:bg-white/10"
+                  )}
+                  style={{
+                    animationDelay: `${index * 50}ms`,
+                  }}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </>
   );
 };
