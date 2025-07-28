@@ -160,8 +160,8 @@ export async function POST(request: NextRequest) {
 
     // Send Email
     const { data, error } = await resend.emails.send({
-      from: "ZENEXGEN Contact <noreply@zenexgen.com>",
-      to: ["masabmbz5@gmail.com"],
+      from: `ZENEXGEN Contact ${process.env.EMAIL_DOMAIN}`,
+      to: [`${process.env.EMAIL_RECIEVER}`],
       replyTo: email,
       subject: `Contact Form: ${inquiryType} - ${name}`,
       react: ContactEmailTemplate({
