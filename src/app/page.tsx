@@ -13,7 +13,6 @@ export default function Home() {
       <HeroSection />
       <ClientLogos />
       <ServicesSection />
-      <MissionVisionSection />
       <WhyZenexgenSection />
       <TestimonialsSection />
       <section className="py-24 bg-gradient-to-br from-primary/10 to-primary-glow/10">

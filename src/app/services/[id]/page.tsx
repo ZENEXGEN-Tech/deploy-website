@@ -584,9 +584,9 @@ export default function ServiceDetail({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="relative min-h-screen bg-muted/30 overflow-hidden">
       <section className="py-16 bg-gradient-hero">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto pt-16 px-4 sm:px-6 lg:px-8">
           <Link
             href="/services"
             className="inline-flex items-center text-white/80 hover:text-white transition-colors mb-8"

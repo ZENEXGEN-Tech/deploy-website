@@ -6,202 +6,268 @@ import {
   Heart,
   Award,
   Users,
-  Calendar,
-  MapPin,
+  Code,
+  Zap,
+  Lightbulb,
+  Sparkles,
+  ArrowRight,
 } from "lucide-react";
 import { Banner } from "@/components/Banner";
 
-const teamMembers = [
-  {
-    name: "Alex Thompson",
-    role: "CEO & Founder",
-    bio: "Visionary leader with 10+ years in tech innovation",
-    location: "San Francisco, CA",
-  },
-  {
-    name: "Mashal Khan",
-    role: "CTO",
-    bio: "AI/ML expert and full-stack architect",
-    location: "Austin, TX",
-  },
-  {
-    name: "Aryan khan",
-    role: "Lead Designer",
-    bio: "UX/UI specialist creating beautiful experiences",
-    location: "New York, NY",
-  },
-  {
-    name: "Marcus Rodriguez",
-    role: "VP of Engineering",
-    bio: "Scalable systems and DevOps enthusiast",
-    location: "Seattle, WA",
-  },
-];
-
-const values = [
-  {
-    icon: Eye,
-    title: "Vision",
-    description:
-      "To be the leading force in intelligent software innovation, empowering businesses to thrive in the digital future.",
-  },
+const missionVisionData = [
   {
     icon: Target,
-    title: "Mission",
+    title: "Our Mission",
     description:
       "Creating cutting-edge software solutions that combine AI, automation, and human creativity to solve complex business challenges.",
+    highlights: [
+      "Deliver cutting-edge solutions",
+      "Foster business growth",
+      "Enable digital transformation",
+    ],
+    gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
+    iconBg: "from-emerald-500 to-teal-600",
   },
   {
-    icon: Heart,
-    title: "Values",
+    icon: Eye,
+    title: "Our Vision",
     description:
-      "Innovation, integrity, collaboration, and excellence drive everything we do. We believe in building lasting partnerships.",
+      "To be the leading force in intelligent software innovation, empowering businesses to thrive in the digital future.",
+    highlights: [
+      "Industry leadership",
+      "Future-focused innovation",
+      "Transformative impact",
+    ],
+    gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
+    iconBg: "from-emerald-500 to-teal-600",
   },
 ];
 
-const milestones = [
+const coreValues = [
   {
-    year: "2021",
-    title: "Company Founded",
+    icon: Heart,
+    title: "Excellence",
     description:
-      "ZENEXGEN was born with a vision to transform businesses through intelligent software solutions.",
+      "We strive for perfection in every line of code and every client interaction, delivering solutions that exceed expectations.",
+    accent: "text-rose-500",
   },
   {
-    year: "2022",
-    title: "First Major Client",
+    icon: Lightbulb,
+    title: "Innovation",
     description:
-      "Successfully delivered our first enterprise-level AI automation platform.",
-  },
-  {
-    year: "2023",
-    title: "Team Expansion",
-    description:
-      "Grew to 15+ talented engineers and designers across multiple time zones.",
-  },
-  {
-    year: "2024",
-    title: "Industry Recognition",
-    description:
-      "Recognized as a top emerging software development company by TechReview.",
+      "We embrace emerging technologies to create tomorrow's solutions today, pushing the boundaries of what's possible.",
+    accent: "text-amber-500",
   },
 ];
+
+const processFlow = [
+  {
+    step: "01",
+    title: "Consultation",
+    description: "We analyze your business needs and technical requirements",
+    icon: Users,
+    duration: "1-2 days",
+  },
+  {
+    step: "02",
+    title: "Strategy",
+    description: "Custom roadmap and architecture planning for your solution",
+    icon: Target,
+    duration: "3-5 days",
+  },
+  {
+    step: "03",
+    title: "Development",
+    description: "Agile development with regular updates and feedback loops",
+    icon: Code,
+    duration: "2-12 weeks",
+  },
+  {
+    step: "04",
+    title: "Deployment",
+    description: "Launch, testing, optimization, and ongoing support",
+    icon: Zap,
+    duration: "1-2 weeks",
+  },
+];
+
+const MissionVisionSection = () => {
+  return (
+    <section className="py-32 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary-glow/5"></div>
+      <div className="absolute top-20 left-1/4 w-72 h-72 bg-gradient-to-r from-primary/10 to-primary-glow/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-gradient-to-r from-primary-glow/10 to-primary/10 rounded-full blur-3xl"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
+            <Sparkles className="w-4 h-4 mr-2" />
+            <span className="text-sm font-medium">Our Purpose</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            Driven by <span className="text-gradient">Purpose</span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            We believe in creating technology that makes a meaningful difference
+            in the world
+          </p>
+        </div>
+
+        {/* Mission & Vision - Floating Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
+          {missionVisionData.map((item, index) => (
+            <div
+              key={item.title}
+              className={`group relative p-8 rounded-3xl bg-gradient-to-br ${item.gradient} backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-700 hover:scale-105 hover:shadow-2xl`}
+            >
+              {/* Floating Icon */}
+              <div
+                className={`absolute -top-6 left-8 w-12 h-12 bg-gradient-to-r ${item.iconBg} rounded-2xl flex items-center justify-center shadow-2xl group-hover:rotate-12 transition-transform duration-500`}
+              >
+                <item.icon className="h-6 w-6 text-white" />
+              </div>
+
+              <div className="pt-8">
+                <h3 className="text-3xl font-bold mb-6 group-hover:text-primary transition-colors">
+                  {item.title}
+                </h3>
+
+                <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+                  {item.description}
+                </p>
+
+                <div className="space-y-4">
+                  {item.highlights.map((highlight, idx) => (
+                    <div
+                      key={highlight}
+                      className="flex items-center group/item"
+                    >
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full mr-4 group-hover/item:scale-150 transition-transform" />
+                      <span className="text-muted-foreground group-hover/item:text-foreground transition-colors">
+                        {highlight}
+                      </span>
+                      <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover/item:opacity-100 text-primary transition-all transform translate-x-2 group-hover/item:translate-x-0" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Core Values - Asymmetric Layout */}
+        <div className="text-center mb-16">
+          <h3 className="text-4xl md:text-5xl font-bold mb-6">
+            Core <span className="text-gradient">Values</span>
+          </h3>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            The principles that guide everything we do
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {coreValues.map((value, index) => (
+            <div
+              key={value.title}
+              className={`group relative p-10 rounded-3xl bg-gradient-to-br from-emerald-500/20 via-teal-500/20 to-cyan-500/20 border border-white/10 hover:border-white/20 transition-all duration-500 hover:shadow-xl ${
+                index === 0 ? "md:translate-y-8" : "md:-translate-y-8"
+              } hover:translate-y-0`}
+            >
+              <div className="flex items-start space-x-6">
+                <div
+                  className={`w-16 h-16 bg-gradient-to-br from-emerald-500/20 via-teal-500/20 to-cyan-500/20 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}
+                >
+                  <value.icon className={`h-8 w-8 ${value.accent}`} />
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
+                    {value.title}
+                  </h4>
+                  <p className="text-muted-foreground text-lg leading-relaxed">
+                    {value.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Decorative Element */}
+              <div
+                className={`absolute -bottom-2 -right-2 w-20 h-20 ${value.accent.replace("text-", "bg-")}/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700`}
+              ></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const About = () => {
   return (
     <div className="min-h-screen">
       <Banner
-        title=<>
-          Building the <span className="text-gradient">Future</span>
-        </>
+        title={
+          <>
+            Building the <span className="text-gradient">Future</span>
+          </>
+        }
         badge="About ZENEXGEN"
         description="We're a team of passionate innovators, engineers, and visionaries dedicated to creating software that doesn't just work—it transforms."
       />
 
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {values.map((value) => (
-              <Card key={value.title} className="card-glass text-center">
-                <CardContent className="p-8">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <value.icon className="h-8 w-8 text-primary-foreground" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4">{value.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {value.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      <MissionVisionSection />
 
-      <section className="py-24 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Process Flow Section - Enhanced */}
+      <section className="py-24 bg-muted/30 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
+              <Code className="w-4 h-4 mr-2" />
+              <span className="text-sm font-medium">Our Methodology</span>
+            </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Meet Our <span className="text-gradient">Team</span>
+              Our <span className="text-gradient">Process</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Talented individuals from diverse backgrounds united by a shared
-              passion for creating exceptional software experiences.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member) => (
-              <Card
-                key={member.name}
-                className="card-glass card-hover text-center"
-              >
-                <CardContent className="p-6">
-                  <div className="w-20 h-20 bg-gradient-primary rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <Users className="h-10 w-10 text-primary-foreground" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-1">{member.name}</h3>
-                  <p className="text-primary text-sm font-medium mb-2">
-                    {member.role}
-                  </p>
-                  <p className="text-muted-foreground text-sm mb-3">
-                    {member.bio}
-                  </p>
-                  <div className="flex items-center justify-center text-xs text-muted-foreground">
-                    <MapPin className="h-3 w-3 mr-1" />
-                    {member.location}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Our <span className="text-gradient">Journey</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              From a bold idea to a thriving company—here's how we've grown and
-              evolved to become a trusted technology partner.
+              A proven methodology that ensures successful project delivery
+              every time
             </p>
           </div>
 
           <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-primary rounded-full"></div>
+            {/* Enhanced Connection line */}
+            <div className="hidden md:block absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"></div>
 
-            <div className="space-y-12">
-              {milestones.map((milestone, index) => (
-                <div
-                  key={milestone.year}
-                  className={`relative flex items-center ${
-                    index % 2 === 0 ? "justify-start" : "justify-end"
-                  }`}
-                >
-                  <Card
-                    className={`card-glass w-full max-w-md ${
-                      index % 2 === 0 ? "mr-auto" : "ml-auto"
-                    }`}
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex items-center mb-3">
-                        <Calendar className="h-5 w-5 text-primary mr-2" />
-                        <span className="text-primary font-semibold">
-                          {milestone.year}
-                        </span>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {processFlow.map((process, index) => (
+                <div key={process.step} className="relative group">
+                  <Card className="card-glass card-hover text-center group-hover:scale-105 transition-all duration-300 group-hover:shadow-2xl">
+                    <CardContent className="p-8">
+                      <div className="relative">
+                        <div className="w-20 h-20 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 relative z-10 group-hover:rotate-12 transition-transform duration-500">
+                          <process.icon className="h-10 w-10 text-primary-foreground" />
+                        </div>
+                        <div className="absolute -top-3 -right-3 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
+                          {process.step}
+                        </div>
                       </div>
-                      <h3 className="text-xl font-semibold mb-2">
-                        {milestone.title}
+                      <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors">
+                        {process.title}
                       </h3>
-                      <p className="text-muted-foreground">
-                        {milestone.description}
+                      <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                        {process.description}
                       </p>
+                      <Badge
+                        variant="outline"
+                        className="text-xs bg-primary/10 border-primary/20 hover:bg-primary/20 transition-colors"
+                      >
+                        {process.duration}
+                      </Badge>
                     </CardContent>
                   </Card>
-
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background"></div>
                 </div>
               ))}
             </div>
@@ -209,38 +275,54 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-gradient-to-br from-primary/10 to-primary-glow/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-4xl mx-auto">
-            <Award className="h-16 w-16 text-primary mx-auto mb-6" />
-            <h2 className="text-3xl md:text-5xl font-bold mb-8">
+      {/* Enhanced Beliefs Section */}
+      <section className="py-32 bg-gradient-to-br from-primary/10 to-primary-glow/10 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 via-transparent to-primary-glow/5"></div>
+        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <div className="w-24 h-24 bg-gradient-primary rounded-3xl flex items-center justify-center mx-auto mb-8 hover:rotate-12 transition-transform duration-500">
+              <Award className="h-12 w-12 text-primary-foreground" />
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-8">
               What We <span className="text-gradient">Believe</span>
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-8">
+            <p className="text-2xl text-muted-foreground leading-relaxed mb-16 max-w-4xl mx-auto">
               Technology should be an enabler, not a barrier. We believe in
               creating software that's intuitive, powerful, and
               accessible—solutions that feel natural and empower people to
               achieve more than they thought possible.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Simplicity</h3>
-                <p className="text-muted-foreground">
-                  Complex problems, elegant solutions
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Innovation</h3>
-                <p className="text-muted-foreground">
-                  Always pushing boundaries
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Impact</h3>
-                <p className="text-muted-foreground">
-                  Creating meaningful change
-                </p>
-              </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-16">
+              {[
+                {
+                  title: "Simplicity",
+                  desc: "Complex problems, elegant solutions",
+                  icon: "✨",
+                },
+                {
+                  title: "Innovation",
+                  desc: "Always pushing boundaries",
+                  icon: "🚀",
+                },
+                {
+                  title: "Impact",
+                  desc: "Creating meaningful change",
+                  icon: "🌟",
+                },
+              ].map((belief, index) => (
+                <div key={belief.title} className="group text-center">
+                  <div className="text-4xl mb-4 group-hover:scale-125 transition-transform duration-300">
+                    {belief.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
+                    {belief.title}
+                  </h3>
+                  <p className="text-muted-foreground text-lg">{belief.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
