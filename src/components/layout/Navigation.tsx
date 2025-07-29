@@ -1,8 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, X } from "lucide-react";
-import { useTheme } from "next-themes";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -11,7 +10,6 @@ export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { theme, setTheme } = useTheme();
   const location = usePathname();
 
   useEffect(() => {
@@ -143,22 +141,21 @@ export const Navigation = () => {
           </div>
 
           {/* Right side controls */}
-          <div className="flex items-center space-x-2">
-            {/* Theme toggle */}
-            {mounted && (
+          <div className="flex items-center space-x-3">
+            {/* Get Started Button - Hidden on mobile, shown on desktop */}
+            <div className="hidden md:block">
               <Button
-                variant="ghost"
+                asChild
+                onClick={() => (window.location.href = "/contact")}
                 size="sm"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="w-9 h-9 rounded-lg transition-colors duration-200 hover:bg-muted"
+                className="bg-teal-500 hover:bg-teal-500/90 rounded-lg px-4 py-2 transition-all duration-200 group"
               >
-                {theme === "dark" ? (
-                  <Sun className="h-4 w-4" />
-                ) : (
-                  <Moon className="h-4 w-4" />
-                )}
+                <Link href="/contact" className="flex items-center space-x-2">
+                  <span className="text-sm font-medium">Get Started</span>
+                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                </Link>
               </Button>
-            )}
+            </div>
 
             {/* Mobile menu toggle */}
             <div className="md:hidden">
@@ -196,7 +193,7 @@ export const Navigation = () => {
                   className={cn(
                     "block px-4 py-3 text-base font-medium rounded-lg mx-3 transition-all duration-200 transform",
                     isActive(item.href)
-                      ? "text-primary bg-primary/10 border-l-2 border-primary"
+                      ? "text-teal-500 bg-teal-500/10 border-l-2 border-teal-500"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                   )}
                   style={{
@@ -206,6 +203,23 @@ export const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
+
+              {/* Get Started button for mobile */}
+              <div className="px-3 pt-2">
+                <Button
+                  asChild
+                  className="w-full bg-teal-500 hover:bg-teal-500/90 text-primary-foreground rounded-lg py-3 transition-all duration-200 group"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <Link
+                    href="/contact"
+                    className="flex items-center justify-center space-x-2"
+                  >
+                    <span className="font-medium">Get Started</span>
+                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
