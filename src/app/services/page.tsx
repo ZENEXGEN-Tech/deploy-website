@@ -81,22 +81,6 @@ const services = [
     accent: "text-emerald-500",
   },
   {
-    id: "cloud-infrastructure",
-    icon: Cloud,
-    title: "Cloud Infrastructure",
-    shortDescription:
-      "Scalable cloud solutions that ensure your applications perform optimally under any load.",
-    features: [
-      "AWS/Azure deployment",
-      "Microservices architecture",
-      "Auto-scaling solutions",
-    ],
-    category: "Infrastructure",
-    gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
-    iconBg: "from-emerald-500 to-teal-600",
-    accent: "text-emerald-500",
-  },
-  {
     id: "cybersecurity-solutions",
     icon: Shield,
     title: "Cybersecurity Solutions",

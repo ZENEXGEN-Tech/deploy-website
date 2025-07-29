@@ -40,7 +40,7 @@ export const HeroSection = () => {
             <div className="grid grid-cols-3 gap-6 pt-8">
               <div className="text-center lg:text-left">
                 <div className="text-2xl lg:text-5xl font-bold text-teal-500">
-                  <NumberTicker value={500} />+
+                  <NumberTicker value={50} />+
                 </div>
                 <div className="text-sm lg:text-xl text-muted-foreground">
                   Projects Delivered
@@ -48,7 +48,7 @@ export const HeroSection = () => {
               </div>
               <div className="text-center lg:text-left">
                 <div className="text-2xl lg:text-5xl font-bold text-teal-500">
-                  <NumberTicker value={90} />%
+                  <NumberTicker value={98} />%
                 </div>
                 <div className="text-sm lg:text-xl text-muted-foreground">
                   Client Satisfaction
