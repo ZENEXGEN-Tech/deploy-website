@@ -1,8 +1,7 @@
-import React from "react";
+import { Award } from "lucide-react";
 import Marquee from "react-fast-marquee";
 
-const ClientLogos = () => {
-  // Dummy client logos data
+const ClientsSection = () => {
   const clients = [
     {
       name: "TechCorp",
@@ -12,18 +11,12 @@ const ClientLogos = () => {
       name: "InnovateLab",
       logo: "https://resend.com/static/customers/gumroad.svg",
     },
-    {
-      name: "DataFlow",
-      logo: "https://resend.com/static/customers/max.svg",
-    },
+    { name: "DataFlow", logo: "https://resend.com/static/customers/max.svg" },
     {
       name: "CloudSync",
       logo: "https://resend.com/static/customers/osnplus.svg",
     },
-    {
-      name: "NextGen",
-      logo: "https://resend.com/static/customers/totvs.svg",
-    },
+    { name: "NextGen", logo: "https://resend.com/static/customers/totvs.svg" },
     {
       name: "DigitalEdge",
       logo: "https://resend.com/static/customers/voahoteis.svg",
@@ -36,10 +29,7 @@ const ClientLogos = () => {
       name: "FutureTech",
       logo: "https://resend.com/static/customers/briefer.svg",
     },
-    {
-      name: "CodeBase",
-      logo: "https://resend.com/static/customers/booth.svg",
-    },
+    { name: "CodeBase", logo: "https://resend.com/static/customers/booth.svg" },
     {
       name: "WebForce",
       logo: "https://resend.com/static/customers/lastro.svg",
@@ -47,14 +37,19 @@ const ClientLogos = () => {
   ];
 
   return (
-    <div className="py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-        {/* Section Header - Center Aligned */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
+    <section className="py-32 bg-muted/30 relative">
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
+            <Award className="w-4 h-4 mr-2" />
+            <span className="text-sm font-medium">Trusted Worldwide</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Our <span className="text-gradient">Clients</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Trusted by leading companies worldwide to deliver exceptional
             results
           </p>
@@ -66,7 +61,7 @@ const ClientLogos = () => {
             {clients.map((client, index) => (
               <div
                 key={`${client.name}-${index}`}
-                className="mx-6 bg-black rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-6 border border-gray-200 flex items-center justify-center min-w-[180px] h-20"
+                className="mx-6 bg-gradient-to-br from-emerald-500/20 via-teal-500/20 to-cyan-500/20 rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 p-6 border border-white/10 hover:border-white/20 flex items-center justify-center min-w-[180px] h-20 hover:scale-105"
               >
                 <img
                   src={client.logo}
@@ -78,7 +73,6 @@ const ClientLogos = () => {
           </Marquee>
         </div>
 
-        {/* Second Marquee - Moving Left */}
         <div className="mb-12">
           <Marquee
             speed={50}
@@ -92,7 +86,7 @@ const ClientLogos = () => {
               .map((client, index) => (
                 <div
                   key={`${client.name}-reverse-${index}`}
-                  className="mx-6 bg-teal-500 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-6 border border-gray-200 flex items-center justify-center min-w-[180px] h-20"
+                  className="mx-6 bg-gradient-to-br from-primary/20 via-primary-glow/20 to-primary/20 rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 p-6 border border-white/10 hover:border-white/20 flex items-center justify-center min-w-[180px] h-20 hover:scale-105"
                 >
                   <img
                     src={client.logo}
@@ -104,8 +98,8 @@ const ClientLogos = () => {
           </Marquee>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default ClientLogos;
+export default ClientsSection;

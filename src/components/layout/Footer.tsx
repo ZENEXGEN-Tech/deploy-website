@@ -85,7 +85,7 @@ export const Footer = () => {
 
         <div className="mt-8 pt-8 border-t border-border">
           <p className="text-center text-sm text-muted-foreground">
-            © 2024 ZENEXGEN. All rights reserved.
+            © {2025} ZENEXGEN. All rights reserved.
           </p>
         </div>
       </div>

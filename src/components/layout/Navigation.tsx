@@ -100,9 +100,8 @@ export const Navigation = () => {
           // Better mobile margins and responsive design
           "mt-3 mx-auto rounded-2xl border sm:mt-4 sm:mx-5 md:mt-5 md:mx-6 lg:mx-8",
           "px-4 sm:px-6 lg:px-8",
-          isScrolled
-            ? "bg-background/90 border-border/50 shadow-lg backdrop-blur-2xl"
-            : "bg-background/10 border-white/10 backdrop-blur-md"
+          // Consistent styling - same for all routes and scroll states
+          "bg-background/90 border-border/50 shadow-lg backdrop-blur-2xl"
         )}
       >
         <div className="flex justify-between items-center h-16 sm:h-18">
@@ -113,9 +112,7 @@ export const Navigation = () => {
                 Z
               </span>
             </div>
-            <span
-              className={`md:text-xl text-lg lg:text-xl font-bold ${isHomeRoute ? "text-gradient" : "text-black"}`}
-            >
+            <span className="md:text-xl text-lg lg:text-xl font-bold text-foreground">
               ZENEXGEN
             </span>
           </Link>
@@ -129,12 +126,8 @@ export const Navigation = () => {
                 className={cn(
                   "text-sm font-medium transition-all duration-200 relative group py-2",
                   isActive(item.href)
-                    ? isScrolled
-                      ? "text-primary"
-                      : "text-white"
-                    : isScrolled
-                      ? "text-muted-foreground hover:text-foreground"
-                      : "text-white/80 hover:text-white"
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 {item.name}
@@ -158,10 +151,7 @@ export const Navigation = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className={cn(
-                  "w-9 h-9 rounded-lg transition-colors duration-200 ",
-                  isScrolled ? "hover:bg-muted" : "text-white hover:bg-white/10"
-                )}
+                className="w-9 h-9 rounded-lg transition-colors duration-200 hover:bg-muted"
               >
                 {theme === "dark" ? (
                   <Sun className="h-4 w-4" />
@@ -177,10 +167,7 @@ export const Navigation = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsOpen(!isOpen)}
-                className={cn(
-                  "w-9 h-9 rounded-lg transition-colors duration-200",
-                  isScrolled ? "hover:bg-muted" : "text-white hover:bg-white/10"
-                )}
+                className="w-9 h-9 rounded-lg transition-colors duration-200 hover:bg-muted"
                 aria-label={isOpen ? "Close menu" : "Open menu"}
               >
                 {isOpen ? (
@@ -201,12 +188,7 @@ export const Navigation = () => {
           )}
         >
           <div className="border-t border-border/20 backdrop-blur-xl">
-            <div
-              className={cn(
-                "py-4 space-y-1 ",
-                isScrolled ? "bg-transparent" : "bg-transparent"
-              )}
-            >
+            <div className="py-4 space-y-1">
               {navigation.map((item, index) => (
                 <Link
                   key={item.name}
@@ -215,12 +197,8 @@ export const Navigation = () => {
                   className={cn(
                     "block px-4 py-3 text-base font-medium rounded-lg mx-3 transition-all duration-200 transform",
                     isActive(item.href)
-                      ? isScrolled
-                        ? "text-primary bg-primary/10 border-l-2 border-primary"
-                        : "text-white bg-white/10 border-l-2 border-white"
-                      : isScrolled
-                        ? "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                        : "text-white/80 hover:text-white hover:bg-white/10"
+                      ? "text-primary bg-primary/10 border-l-2 border-primary"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                   )}
                   style={{
                     animationDelay: `${index * 50}ms`,

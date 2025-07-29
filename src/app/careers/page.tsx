@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -13,7 +14,20 @@ import {
   Heart,
   Trophy,
   ArrowRight,
+  Code2,
+  Brain,
+  Palette,
+  Server,
+  Target,
+  Megaphone,
+  Sparkles,
+  Star,
+  CheckCircle,
+  Globe,
+  Award,
+  Rocket,
 } from "lucide-react";
+import Link from "next/link";
 import { Banner } from "@/components/Banner";
 
 const openPositions = [
@@ -32,6 +46,10 @@ const openPositions = [
       "Cloud platforms (AWS/GCP)",
       "TypeScript",
     ],
+    icon: Code2,
+    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
+    iconBg: "from-green-500 to-emerald-600",
+    accent: "text-green-500",
   },
   {
     id: 2,
@@ -48,6 +66,10 @@ const openPositions = [
       "3+ years ML experience",
       "MLOps knowledge",
     ],
+    icon: Brain,
+    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
+    iconBg: "from-green-500 to-emerald-600",
+    accent: "text-green-500",
   },
   {
     id: 3,
@@ -64,6 +86,10 @@ const openPositions = [
       "Design systems",
       "User research experience",
     ],
+    icon: Palette,
+    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
+    iconBg: "from-green-500 to-emerald-600",
+    accent: "text-green-500",
   },
   {
     id: 4,
@@ -73,13 +99,17 @@ const openPositions = [
     type: "Full-time",
     salary: "$110k - $145k",
     description:
-      "Build and maintain our cloud infrastructure, ensuring scalability, reliability, and security.",
+      "Build and maintain our cloud infrastructure, ensuring scalability, reliability, and security. Work with Us to design",
     requirements: [
       "Docker & Kubernetes",
       "CI/CD pipelines",
       "AWS/GCP expertise",
       "Infrastructure as Code",
     ],
+    icon: Server,
+    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
+    iconBg: "from-green-500 to-emerald-600",
+    accent: "text-green-500",
   },
   {
     id: 5,
@@ -89,13 +119,17 @@ const openPositions = [
     type: "Full-time",
     salary: "$130k - $170k",
     description:
-      "Drive product strategy and execution for our enterprise software solutions.",
+      "Drive product strategy and execution for our enterprise software solutions. Work with Us to design",
     requirements: [
       "5+ years PM experience",
       "B2B SaaS background",
       "Agile methodologies",
       "Data-driven mindset",
     ],
+    icon: Target,
+    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
+    iconBg: "from-green-500 to-emerald-600",
+    accent: "text-green-500",
   },
   {
     id: 6,
@@ -112,6 +146,10 @@ const openPositions = [
       "Content creation skills",
       "Growth mindset",
     ],
+    icon: Megaphone,
+    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
+    iconBg: "from-green-500 to-emerald-600",
+    accent: "text-green-500",
   },
 ];
 
@@ -121,40 +159,95 @@ const benefits = [
     title: "Health & Wellness",
     description:
       "Comprehensive health, dental, and vision insurance plus wellness stipend",
+    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
+    iconBg: "from-green-500 to-emerald-600",
   },
   {
     icon: Zap,
     title: "Flexible Work",
     description: "Remote-first culture with flexible hours and unlimited PTO",
+    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
+    iconBg: "from-green-500 to-emerald-600",
   },
   {
     icon: Trophy,
     title: "Growth & Learning",
     description:
       "$2,000 annual learning budget for courses, conferences, and certifications",
+    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
+    iconBg: "from-green-500 to-emerald-600",
   },
   {
     icon: Coffee,
     title: "Great Perks",
     description:
       "Top-tier equipment, team retreats, and monthly team building events",
+    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
+    iconBg: "from-green-500 to-emerald-600",
+  },
+];
+
+const departments = [
+  { name: "All", count: openPositions.length },
+  {
+    name: "Engineering",
+    count: openPositions.filter((p) => p.department === "Engineering").length,
+  },
+  {
+    name: "AI & Data",
+    count: openPositions.filter((p) => p.department === "AI & Data").length,
+  },
+  {
+    name: "Design",
+    count: openPositions.filter((p) => p.department === "Design").length,
+  },
+  {
+    name: "Infrastructure",
+    count: openPositions.filter((p) => p.department === "Infrastructure")
+      .length,
+  },
+  {
+    name: "Product",
+    count: openPositions.filter((p) => p.department === "Product").length,
+  },
+  {
+    name: "Marketing",
+    count: openPositions.filter((p) => p.department === "Marketing").length,
+  },
+];
+
+const types = ["All", "Full-time", "Internship"];
+
+const companyStats = [
+  {
+    icon: Users,
+    number: "50+",
+    label: "Team Members",
+    sublabel: "Worldwide",
+  },
+  {
+    icon: Globe,
+    number: "15+",
+    label: "Countries",
+    sublabel: "Remote Team",
+  },
+  {
+    icon: Award,
+    number: "4.9",
+    label: "Glassdoor Rating",
+    sublabel: "Employee Satisfaction",
+  },
+  {
+    icon: Rocket,
+    number: "95%",
+    label: "Retention Rate",
+    sublabel: "Employee Growth",
   },
 ];
 
 const Careers = () => {
   const [selectedDepartment, setSelectedDepartment] = useState("All");
   const [selectedType, setSelectedType] = useState("All");
-
-  const departments = [
-    "All",
-    "Engineering",
-    "AI & Data",
-    "Design",
-    "Infrastructure",
-    "Product",
-    "Marketing",
-  ];
-  const types = ["All", "Full-time", "Internship"];
 
   const filteredPositions = openPositions.filter((position) => {
     const matchesDepartment =
@@ -168,182 +261,309 @@ const Careers = () => {
   return (
     <div className="min-h-screen">
       <Banner
-        title=<>
-          Join <span className="text-gradient">Our Team</span>
-        </>
+        title={
+          <>
+            Join <span className="text-gradient">Our Team</span>
+          </>
+        }
         badge="Careers"
         description="Be part of a team that's revolutionizing how businesses operate through intelligent software solutions. Build your career while building the future."
       />
 
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Life at <span className="text-gradient">ZENEXGEN</span>
+      {/* Culture Section */}
+      <section className="py-32 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary-glow/5"></div>
+        <div className="absolute top-20 left-1/4 w-72 h-72 bg-gradient-to-r from-primary/10 to-primary-glow/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-gradient-to-r from-primary-glow/10 to-primary/10 rounded-full blur-3xl"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
+              <Sparkles className="w-4 h-4 mr-2" />
+              <span className="text-sm font-medium">Life at ZENEXGEN</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              Where <span className="text-gradient">Innovation</span> Meets
+              <br />
+              <span className="text-gradient">Opportunity</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               We believe great work happens when passionate people have the
               freedom to innovate, grow, and make a meaningful impact.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {benefits.map((benefit) => (
-              <Card key={benefit.title} className="card-glass text-center">
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <benefit.icon className="h-8 w-8 text-primary-foreground" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    {benefit.description}
-                  </p>
-                </CardContent>
-              </Card>
+          {/* Benefits Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+            {benefits.map((benefit, index) => (
+              <div
+                key={benefit.title}
+                className={`group relative p-8 rounded-3xl bg-gradient-to-br ${benefit.gradient} backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-700 hover:scale-105 hover:shadow-2xl text-center`}
+              >
+                {/* Floating Icon */}
+                <div
+                  className={`w-16 h-16 bg-gradient-to-r ${benefit.iconBg} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500 shadow-2xl`}
+                >
+                  <benefit.icon className="h-8 w-8 text-white" />
+                </div>
+
+                <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors">
+                  {benefit.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {benefit.description}
+                </p>
+
+                {/* Decorative Element */}
+                <div className="absolute -bottom-2 -right-2 w-20 h-20 bg-primary/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+              </div>
             ))}
           </div>
 
-          <Card className="card-glass">
-            <CardContent className="p-12 text-center">
-              <Users className="h-12 w-12 text-primary mx-auto mb-6" />
-              <blockquote className="text-2xl font-medium text-foreground mb-4">
-                "At ZENEXGEN, we don't just work together—we innovate together,
-                learn together, and grow together."
+          {/* Quote Section */}
+          <div className="relative p-12 rounded-3xl bg-gradient-to-br from-primary/10 via-primary-glow/5 to-primary/10 backdrop-blur-sm border border-white/10 text-center">
+            <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-14 h-14 bg-gradient-primary rounded-2xl flex items-center justify-center shadow-2xl">
+              <Users className="h-7 w-7 text-white" />
+            </div>
+            <div className="pt-8">
+              <blockquote className="text-2xl md:text-3xl font-medium text-foreground mb-6 leading-relaxed">
+                "At ZENEXGEN, we don't just work together—we{" "}
+                <span className="text-gradient">innovate</span> together,{" "}
+                <span className="text-gradient">learn</span> together, and{" "}
+                <span className="text-gradient">grow</span> together."
               </blockquote>
-              <cite className="text-muted-foreground">
+              <cite className="text-lg text-muted-foreground">
                 — Mashal Tareen, CEO & Founder
               </cite>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="py-24 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Stats Section */}
+      <section className="py-24 bg-muted/30 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+            <h3 className="text-3xl md:text-4xl font-bold mb-6">
+              Our <span className="text-gradient">Culture</span>
+            </h3>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Numbers that reflect our commitment to creating an exceptional
+              workplace
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {companyStats.map((stat, index) => (
+              <div key={index} className="text-center group">
+                <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                  <stat.icon className="h-8 w-8 text-primary-foreground" />
+                </div>
+                <div className="text-3xl font-bold text-gradient mb-2">
+                  {stat.number}
+                </div>
+                <h4 className="text-lg font-semibold mb-1">{stat.label}</h4>
+                <p className="text-sm text-muted-foreground">{stat.sublabel}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Open Positions Section */}
+      <section className="py-32 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary-glow/5"></div>
+        <div className="absolute top-20 right-1/4 w-72 h-72 bg-gradient-to-r from-primary/10 to-primary-glow/10 rounded-full blur-3xl"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
+              <Sparkles className="w-4 h-4 mr-2" />
+              <span className="text-sm font-medium">Join Our Mission</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
               Open <span className="text-gradient">Positions</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Find your next opportunity to make an impact. We're always looking
               for talented individuals who share our passion for innovation.
             </p>
           </div>
 
-          {/* Filters */}
-          <div className="flex flex-wrap gap-4 mb-12 justify-center">
-            <div className="flex flex-wrap gap-2">
-              {departments.map((dept) => (
-                <Button
-                  key={dept}
-                  variant={selectedDepartment === dept ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedDepartment(dept)}
-                  className="text-xs"
+          {/* Department Filter */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {departments.map((department) => (
+              <Button
+                key={department.name}
+                variant={
+                  department.name === selectedDepartment ? "default" : "outline"
+                }
+                className={`rounded-full transition-all duration-300 group ${
+                  department.name === selectedDepartment
+                    ? "bg-gradient-primary hover:shadow-glow scale-105"
+                    : "hover:scale-105 hover:border-primary/50"
+                }`}
+                onClick={() => setSelectedDepartment(department.name)}
+              >
+                <span>{department.name}</span>
+                <span
+                  className={`ml-2 text-xs px-2 py-0.5 rounded-full ${
+                    department.name === selectedDepartment
+                      ? "bg-white/20"
+                      : "bg-primary/10 text-primary group-hover:bg-primary/20"
+                  }`}
                 >
-                  {dept}
-                </Button>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {types.map((type) => (
-                <Badge
-                  key={type}
-                  variant={selectedType === type ? "secondary" : "outline"}
-                  onClick={() => setSelectedType(type)}
-                  className="text-xs"
-                >
-                  {type}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          {/* Job Listings */}
-          <div className="space-y-6">
-            {filteredPositions.map((position) => (
-              <Card key={position.id} className="card-glass card-hover">
-                <CardContent className="p-8">
-                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-3">
-                        <h3 className="text-xl font-semibold">
-                          {position.title}
-                        </h3>
-                        <Badge variant="secondary">{position.department}</Badge>
-                        <Badge variant="outline">{position.type}</Badge>
-                      </div>
-
-                      <div className="flex items-center gap-6 text-sm text-muted-foreground mb-4">
-                        <div className="flex items-center">
-                          <MapPin className="h-4 w-4 mr-1" />
-                          {/* {position.location} */}
-                          Karachi, Pakistan
-                        </div>
-                        <div className="flex items-center">
-                          <Clock className="h-4 w-4 mr-1" />
-                          {position.type}
-                        </div>
-                        {/* <div className="flex items-center">
-                          <DollarSign className="h-4 w-4 mr-1" />
-                          {position.salary}
-                        </div> */}
-                      </div>
-
-                      <p className="text-muted-foreground mb-4">
-                        {position.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2">
-                        {position.requirements.map((req) => (
-                          <Badge
-                            key={req}
-                            variant="outline"
-                            className="text-xs"
-                          >
-                            {req}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mt-6 lg:mt-0 lg:ml-8">
-                      <Button className="w-full lg:w-auto group">
-                        Apply Now
-                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  {department.count}
+                </span>
+              </Button>
             ))}
           </div>
 
+          {/* Type Filter */}
+          <div className="flex justify-center gap-3 mb-16">
+            {types.map((type) => (
+              <Button
+                key={type}
+                variant={type === selectedType ? "secondary" : "outline"}
+                size="sm"
+                onClick={() => setSelectedType(type)}
+                className="rounded-full transition-all duration-300 hover:scale-105"
+              >
+                {type}
+              </Button>
+            ))}
+          </div>
+
+          {/* Positions Grid */}
+          <motion.div className="grid grid-cols-1 lg:grid-cols-3 gap-4" layout>
+            {filteredPositions.map((position, index) => (
+              <div
+                key={position.id}
+                className={`group relative p-8 rounded-3xl bg-gradient-to-br ${position.gradient} backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-700 hover:scale-105 hover:shadow-2xl`}
+              >
+                {/* Floating Icon */}
+                <div
+                  className={`absolute -top-6 left-8 w-14 h-14 bg-gradient-to-r ${position.iconBg} rounded-2xl flex items-center justify-center shadow-2xl group-hover:rotate-12 transition-transform duration-500`}
+                >
+                  <position.icon className="h-7 w-7 text-white" />
+                </div>
+
+                <div className="pt-8">
+                  {/* Header */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <Badge variant="secondary" className="text-xs">
+                      {position.department}
+                    </Badge>
+                    <Badge variant="outline" className="text-xs">
+                      {position.type}
+                    </Badge>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
+                    {position.title}
+                  </h3>
+
+                  {/* Location & Info */}
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
+                    <div className="flex items-center">
+                      <MapPin className="h-4 w-4 mr-1" />
+                      Karachi, Pakistan
+                    </div>
+                    <div className="flex items-center">
+                      <Clock className="h-4 w-4 mr-1" />
+                      {position.type}
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    {position.description}
+                  </p>
+
+                  {/* Requirements */}
+                  <div className="space-y-3 mb-8">
+                    {position.requirements.map((requirement, idx) => (
+                      <div
+                        key={requirement}
+                        className="flex items-center group/item"
+                      >
+                        <div
+                          className={`w-1.5 h-1.5 ${position.accent.replace("text-", "bg-")} rounded-full mr-3 group-hover/item:scale-150 transition-transform`}
+                        />
+                        <span className="text-sm text-muted-foreground group-hover/item:text-foreground transition-colors">
+                          {requirement}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Apply Button */}
+                  <Button className="w-full bg-gradient-primary hover:shadow-glow group/btn">
+                    <span>Apply Now</span>
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                  </Button>
+                </div>
+
+                {/* Decorative Element */}
+                <div
+                  className={`absolute -bottom-2 -right-2 w-20 h-20 ${position.accent.replace("text-", "bg-")}/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700`}
+                ></div>
+              </div>
+            ))}
+          </motion.div>
+
           {filteredPositions.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">
+            <div className="text-center py-16">
+              <div className="w-20 h-20 bg-gradient-to-r from-muted to-muted-foreground/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                <Star className="h-10 w-10 text-muted-foreground" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">No Positions Found</h3>
+              <p className="text-muted-foreground max-w-md mx-auto">
                 No positions match your current filters. Try adjusting your
-                search criteria.
+                search criteria or check back later for new opportunities.
               </p>
             </div>
           )}
         </div>
       </section>
 
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Don't See the Perfect Role?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              We're always interested in meeting talented individuals. Send us
-              your resume and tell us what you're passionate about.
-            </p>
-            <Button size="lg" className="btn-hero">
+      {/* CTA Section */}
+      <section className="py-32 bg-gradient-to-br from-primary/10 to-primary-glow/10 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 via-transparent to-primary-glow/5"></div>
+        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="w-20 h-20 bg-gradient-primary rounded-3xl flex items-center justify-center mx-auto mb-8 hover:rotate-12 transition-transform duration-500">
+            <Sparkles className="h-10 w-10 text-primary-foreground" />
+          </div>
+
+          <h2 className="text-4xl md:text-6xl font-bold mb-8">
+            Don't See the Perfect <span className="text-gradient">Role</span>?
+          </h2>
+
+          <p className="text-2xl text-muted-foreground leading-relaxed mb-12 max-w-3xl mx-auto">
+            We're always interested in meeting talented individuals. Send us
+            your resume and tell us what you're passionate about.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Button size="lg" className="btn-hero group px-8 py-4 text-lg">
               Send Us Your Resume
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="px-8 py-4 text-lg border-2 hover:scale-105 transition-all duration-300"
+            >
+              Schedule a Chat
             </Button>
           </div>
         </div>

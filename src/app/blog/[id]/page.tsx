@@ -110,7 +110,9 @@ export default async function BlogDetail({
 
             <div className="aspect-video bg-muted rounded-lg overflow-hidden mb-12">
               <img
-                src={post.image}
+                src={
+                  "https://pg-p.ctme.caltech.edu/wp-content/uploads/sites/4/2023/03/future_of_ai.jpg"
+                }
                 alt={post.title}
                 className="w-full h-full object-cover"
               />
