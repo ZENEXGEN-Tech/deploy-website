@@ -1,42 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  Eye,
-  Target,
-  Heart,
-  Award,
-  Users,
-  Calendar,
-  MapPin,
-} from "lucide-react";
+import { Eye, Target, Heart, Award, Cpu, Zap, Brain } from "lucide-react";
 import { Banner } from "@/components/Banner";
-
-const teamMembers = [
-  {
-    name: "Alex Thompson",
-    role: "CEO & Founder",
-    bio: "Visionary leader with 10+ years in tech innovation",
-    location: "San Francisco, CA",
-  },
-  {
-    name: "Mashal Khan",
-    role: "CTO",
-    bio: "AI/ML expert and full-stack architect",
-    location: "Austin, TX",
-  },
-  {
-    name: "Aryan khan",
-    role: "Lead Designer",
-    bio: "UX/UI specialist creating beautiful experiences",
-    location: "New York, NY",
-  },
-  {
-    name: "Marcus Rodriguez",
-    role: "VP of Engineering",
-    bio: "Scalable systems and DevOps enthusiast",
-    location: "Seattle, WA",
-  },
-];
 
 const values = [
   {
@@ -59,30 +23,24 @@ const values = [
   },
 ];
 
-const milestones = [
+const spineItems = [
   {
-    year: "2021",
-    title: "Company Founded",
+    icon: Cpu,
+    title: "AI-First Approach",
     description:
-      "ZENEXGEN was born with a vision to transform businesses through intelligent software solutions.",
+      "Every solution we build is powered by AI — from automation bots to predictive analytics that anticipate business needs.",
   },
   {
-    year: "2022",
-    title: "First Major Client",
+    icon: Zap,
+    title: "Real-Time Innovation",
     description:
-      "Successfully delivered our first enterprise-level AI automation platform.",
+      "We build systems that learn and evolve in real-time, enabling faster decision-making and automation at scale.",
   },
   {
-    year: "2023",
-    title: "Team Expansion",
+    icon: Brain,
+    title: "Human + Machine Synergy",
     description:
-      "Grew to 15+ talented engineers and designers across multiple time zones.",
-  },
-  {
-    year: "2024",
-    title: "Industry Recognition",
-    description:
-      "Recognized as a top emerging software development company by TechReview.",
+      "Our software blends machine learning with human insight to create intuitive, transformative digital experiences.",
   },
 ];
 
@@ -117,94 +75,29 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Meet Our <span className="text-gradient">Team</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Talented individuals from diverse backgrounds united by a shared
-              passion for creating exceptional software experiences.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member) => (
-              <Card
-                key={member.name}
-                className="card-glass card-hover text-center"
+      {/* Spine Effect Section */}
+      <section className="py-24 bg-muted/20 relative">
+        <div className="max-w-6xl mx-auto px-6 relative">
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary to-transparent z-0"></div>
+          <div className="space-y-24 relative z-10">
+            {spineItems.map((item, index) => (
+              <div
+                key={index}
+                className={`flex flex-col md:flex-row items-center gap-10 ${
+                  index % 2 === 0 ? "md:flex-row-reverse" : ""
+                }`}
               >
-                <CardContent className="p-6">
-                  <div className="w-20 h-20 bg-gradient-primary rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <Users className="h-10 w-10 text-primary-foreground" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-1">{member.name}</h3>
-                  <p className="text-primary text-sm font-medium mb-2">
-                    {member.role}
-                  </p>
-                  <p className="text-muted-foreground text-sm mb-3">
-                    {member.bio}
-                  </p>
-                  <div className="flex items-center justify-center text-xs text-muted-foreground">
-                    <MapPin className="h-3 w-3 mr-1" />
-                    {member.location}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Our <span className="text-gradient">Journey</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              From a bold idea to a thriving company—here's how we've grown and
-              evolved to become a trusted technology partner.
-            </p>
-          </div>
-
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-primary rounded-full"></div>
-
-            <div className="space-y-12">
-              {milestones.map((milestone, index) => (
-                <div
-                  key={milestone.year}
-                  className={`relative flex items-center ${
-                    index % 2 === 0 ? "justify-start" : "justify-end"
-                  }`}
-                >
-                  <Card
-                    className={`card-glass w-full max-w-md ${
-                      index % 2 === 0 ? "mr-auto" : "ml-auto"
-                    }`}
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex items-center mb-3">
-                        <Calendar className="h-5 w-5 text-primary mr-2" />
-                        <span className="text-primary font-semibold">
-                          {milestone.year}
-                        </span>
-                      </div>
-                      <h3 className="text-xl font-semibold mb-2">
-                        {milestone.title}
-                      </h3>
-                      <p className="text-muted-foreground">
-                        {milestone.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background"></div>
+                <div className="flex-shrink-0 w-20 h-20 rounded-full bg-gradient-primary text-white flex items-center justify-center shadow-xl">
+                  <item.icon className="w-10 h-10" />
                 </div>
-              ))}
-            </div>
+                <div className="bg-background p-8 rounded-2xl shadow-lg max-w-xl">
+                  <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground text-lg leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
