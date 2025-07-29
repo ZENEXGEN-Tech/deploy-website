@@ -27,6 +27,30 @@ const TestimonialsSection = () => {
       rating: 5,
       company: "InnovateCorp",
     },
+    {
+      name: "Sarah Johnson",
+      role: "CTO at TechFlow",
+      content:
+        "ZENEXGEN transformed our legacy systems into a modern, scalable platform. Their AI integration increased our efficiency by 300%.",
+      rating: 5,
+      company: "TechFlow",
+    },
+    {
+      name: "Michael Chen",
+      role: "Founder at StartupX",
+      content:
+        "The mobile app they developed exceeded our expectations. Clean code, beautiful design, and delivered ahead of schedule.",
+      rating: 5,
+      company: "StartupX",
+    },
+    {
+      name: "Emma Rodriguez",
+      role: "VP of Operations at InnovateCorp",
+      content:
+        "Their automation solutions streamlined our entire workflow. We saved 40 hours per week and improved accuracy significantly.",
+      rating: 5,
+      company: "InnovateCorp",
+    },
   ];
 
   return (

@@ -13,6 +13,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Banner } from "@/components/Banner";
+import { ZenexgenTechStack } from "@/components/ZenexgenTechStack";
 
 const missionVisionData = [
   {
@@ -217,6 +218,7 @@ const About = () => {
       />
 
       <MissionVisionSection />
+      {/* <ZenexgenTechStack /> */}
 
       {/* Process Flow Section - Enhanced */}
       <section className="py-24 bg-muted/30 relative">
