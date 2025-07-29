@@ -56,10 +56,12 @@ export default function Blog() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post) => (
               <Link key={post.id} href={`/blog/${post.id}`} className="block">
-                <Card className="card-glass card-hover group h-full cursor-pointer">
-                  <div className="aspect-video bg-muted rounded-t-lg overflow-hidden">
+                <Card className="card-glass card-hover group h-full cursor-pointer pt-0 rounded-2xl">
+                  <div className="aspect-video bg-muted rounded-t-2xl overflow-hidden pt-0">
                     <img
-                      src={post.image}
+                      src={
+                        "https://pg-p.ctme.caltech.edu/wp-content/uploads/sites/4/2023/03/future_of_ai.jpg"
+                      }
                       alt={post.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />

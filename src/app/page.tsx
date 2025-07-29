@@ -1,16 +1,16 @@
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail } from "lucide-react";
-import SplineScene from "@/components/SplineScene";
 import { WhyZenexgenSection } from "@/components/home/WhyZenexgeSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { MissionVisionSection } from "@/components/home/MissionVisionSection";
 import ClientLogos from "@/components/home/ClientsSection";
+import { HeroSection } from "@/components/home/HeroSection";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <SplineScene />
+      <HeroSection />
       <ClientLogos />
       <ServicesSection />
       <MissionVisionSection />
