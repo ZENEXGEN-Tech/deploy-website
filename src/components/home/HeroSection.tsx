@@ -1,5 +1,5 @@
-import { Button, buttonVariants } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import HeroGloble from "./HeroGloble";
 import { NumberTicker } from "../ui/number-ticker";
 import Link from "next/link";

@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -115,7 +114,7 @@ const blogStats = [
 
 // Mock enhanced blog posts with additional properties
 const enhancedBlogPosts =
-  blogPosts?.map((post, index) => ({
+  blogPosts?.map((post,) => ({
     ...post,
     gradient:
       categories.find((cat) => cat.name === post.category)?.gradient ||

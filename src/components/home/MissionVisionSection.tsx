@@ -72,7 +72,7 @@ export const MissionVisionSection = () => {
             </p>
 
             <div className="space-y-3">
-              {missionVisionData[0].highlights.map((highlight, idx) => (
+              {missionVisionData[0].highlights.map((highlight) => (
                 <div key={highlight} className="flex items-center">
                   <div className="w-2 h-2 bg-blue-600 rounded-full mr-3" />
                   <span className="text-gray-700">{highlight}</span>
@@ -95,7 +95,7 @@ export const MissionVisionSection = () => {
             </p>
 
             <div className="space-y-3">
-              {missionVisionData[1].highlights.map((highlight, idx) => (
+              {missionVisionData[1].highlights.map((highlight) => (
                 <div key={highlight} className="flex items-center">
                   <div className="w-2 h-2 bg-black rounded-full mr-3" />
                   <span className="text-gray-600">{highlight}</span>

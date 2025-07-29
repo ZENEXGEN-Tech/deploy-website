@@ -259,8 +259,9 @@ export default function Services() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             layout
           >
-            {filteredServices.map((service, index) => (
+            {filteredServices.map((service) => (
               <section
+                key={service.id}
                 className={`group relative p-8 rounded-3xl bg-gradient-to-br ${service.gradient} backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-700 hover:scale-105 hover:shadow-2xl h-full flex flex-col`}
               >
                 {/* Floating Icon */}
@@ -292,7 +293,7 @@ export default function Services() {
 
                   {/* Features */}
                   <div className="space-y-3 mb-8">
-                    {service.features.map((feature, idx) => (
+                    {service.features.map((feature) => (
                       <div
                         key={feature}
                         className="flex items-center group/item"
@@ -374,7 +375,7 @@ export default function Services() {
           </h2>
 
           <p className="text-2xl text-muted-foreground leading-relaxed mb-12 max-w-3xl mx-auto">
-            Let's discuss how our services can help you achieve your goals and
+            Let&apos;s discuss how our services can help you achieve your goals and
             drive meaningful growth.
           </p>
 

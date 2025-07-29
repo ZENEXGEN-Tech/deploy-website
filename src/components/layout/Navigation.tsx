@@ -8,28 +8,8 @@ import Link from "next/link";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+
   const location = usePathname();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollThreshold =
-        window.innerWidth < 768
-          ? window.innerHeight / 8
-          : window.innerHeight / 4;
-      setIsScrolled(window.scrollY > scrollThreshold);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Close mobile menu when clicking outside or resizing
   useEffect(() => {
@@ -78,7 +58,6 @@ export const Navigation = () => {
     return location.startsWith(path);
   };
 
-  const isHomeRoute = location === "/";
 
   return (
     <>

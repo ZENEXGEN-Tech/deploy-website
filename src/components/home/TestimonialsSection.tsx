@@ -68,8 +68,8 @@ const TestimonialsSection = () => {
             What Our <span className="text-gradient">Clients Say</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Don't just take our word for it. Here's what our clients have to say
-            about their experience working with ZENEXGEN
+            Don&apos;t just take our word for it. Here&apos;s what our clients
+            have to say about their experience working with ZENEXGEN
           </p>
         </div>
 
@@ -86,7 +86,7 @@ const TestimonialsSection = () => {
               </div>
 
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                "{testimonial.content}"
+                &quot;{testimonial.content}&quot;
               </p>
 
               <div className="flex items-center mb-6">

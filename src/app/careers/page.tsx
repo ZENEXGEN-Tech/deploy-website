@@ -1,13 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   MapPin,
   Clock,
-  DollarSign,
   Users,
   Coffee,
   Zap,
@@ -22,7 +20,6 @@ import {
   Megaphone,
   Sparkles,
   Star,
-  CheckCircle,
   Globe,
   Award,
   Rocket,
@@ -329,10 +326,10 @@ const Careers = () => {
             </div>
             <div className="pt-8">
               <blockquote className="text-2xl md:text-3xl font-medium text-foreground mb-6 leading-relaxed">
-                "At ZENEXGEN, we don't just work together—we{" "}
+                &quot;At ZENEXGEN, we don&apos;t just work together—we{" "}
                 <span className="text-gradient">innovate</span> together,{" "}
                 <span className="text-gradient">learn</span> together, and{" "}
-                <span className="text-gradient">grow</span> together."
+                <span className="text-gradient">grow</span> together.&quot;
               </blockquote>
               <cite className="text-lg text-muted-foreground">
                 — Mashal Tareen, CEO & Founder
@@ -391,8 +388,9 @@ const Careers = () => {
               Open <span className="text-gradient">Positions</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Find your next opportunity to make an impact. We're always looking
-              for talented individuals who share our passion for innovation.
+              Find your next opportunity to make an impact. We&apos;re always
+              looking for talented individuals who share our passion for
+              innovation.
             </p>
           </div>
 
@@ -545,12 +543,13 @@ const Careers = () => {
           </div>
 
           <h2 className="text-4xl md:text-6xl font-bold mb-8">
-            Don't See the Perfect <span className="text-gradient">Role</span>?
+            Don&apos;t See the Perfect{" "}
+            <span className="text-gradient">Role</span>?
           </h2>
 
           <p className="text-2xl text-muted-foreground leading-relaxed mb-12 max-w-3xl mx-auto">
-            We're always interested in meeting talented individuals. Send us
-            your resume and tell us what you're passionate about.
+            We&apos;re always interested in meeting talented individuals. Send
+            us your resume and tell us what you&apos;re passionate about.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">

@@ -51,13 +51,13 @@ const WhyZenexgenSection = () => {
             Why Choose <span className="text-gradient">ZENEXGEN</span>?
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We don't just build software – we craft digital experiences that
-            transform businesses and create lasting impact
+            We don&apos;t just build software – we craft digital experiences
+            that transform businesses and create lasting impact
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {values.map((value, index) => (
+          {values.map((value) => (
             <div
               key={value.title}
               className={`group relative p-8 rounded-3xl bg-gradient-to-br ${value.gradient} border border-white/10 hover:border-white/20 transition-all duration-500 hover:shadow-xl hover:scale-105 text-center`}

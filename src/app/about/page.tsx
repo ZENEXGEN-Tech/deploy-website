@@ -13,7 +13,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Banner } from "@/components/Banner";
-import { ZenexgenTechStack } from "@/components/ZenexgenTechStack";
 import OurStack from "@/components/OurStack";
 
 const missionVisionData = [
@@ -119,7 +118,7 @@ const MissionVisionSection = () => {
 
         {/* Mission & Vision - Floating Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
-          {missionVisionData.map((item, index) => (
+          {missionVisionData.map((item) => (
             <div
               key={item.title}
               className={`group relative p-8 rounded-3xl bg-gradient-to-br ${item.gradient} backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-700 hover:scale-105 hover:shadow-2xl`}
@@ -141,7 +140,7 @@ const MissionVisionSection = () => {
                 </p>
 
                 <div className="space-y-4">
-                  {item.highlights.map((highlight, idx) => (
+                  {item.highlights.map((highlight) => (
                     <div
                       key={highlight}
                       className="flex items-center group/item"
@@ -245,7 +244,7 @@ const About = () => {
             <div className="hidden md:block absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"></div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              {processFlow.map((process, index) => (
+              {processFlow.map((process) => (
                 <div key={process.step} className="relative group">
                   <Card className="card-glass card-hover text-center group-hover:scale-105 transition-all duration-300 group-hover:shadow-2xl">
                     <CardContent className="p-8">
@@ -293,7 +292,7 @@ const About = () => {
             </h2>
             <p className="text-2xl text-muted-foreground leading-relaxed mb-16 max-w-4xl mx-auto">
               Technology should be an enabler, not a barrier. We believe in
-              creating software that's intuitive, powerful, and
+              creating software that&apos;s intuitive, powerful, and
               accessible—solutions that feel natural and empower people to
               achieve more than they thought possible.
             </p>
@@ -315,7 +314,7 @@ const About = () => {
                   desc: "Creating meaningful change",
                   icon: "🌟",
                 },
-              ].map((belief, index) => (
+              ].map((belief) => (
                 <div key={belief.title} className="group text-center">
                   <div className="text-4xl mb-4 group-hover:scale-125 transition-transform duration-300">
                     {belief.icon}
