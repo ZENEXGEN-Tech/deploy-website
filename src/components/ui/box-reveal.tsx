@@ -1,6 +1,5 @@
 "use client";
 import * as React from "react";
-import { Badge } from "@/components/ui/badge";
 import { motion, useAnimation, useInView } from "motion/react";
 import { useEffect, useRef } from "react";
 
@@ -66,10 +65,3 @@ export const BoxReveal = ({
     </div>
   );
 };
-
-interface BannerProps {
-  badge?: string;
-  title: React.ReactNode;
-  description?: string;
-  className?: string;
-}

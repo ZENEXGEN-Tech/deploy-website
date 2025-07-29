@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useLayoutEffect, useMemo, useRef } from "react";
-import { AdditiveBlending, Vector3, MeshStandardMaterial } from "three";
+import { AdditiveBlending, Vector3 } from "three";
 import { useFrame } from "@react-three/fiber";
 // import { useControls, folder } from "leva";
 import * as THREE from "three";
@@ -27,74 +27,75 @@ export function NeuralNetwork() {
   let vertexpos = 0;
   let colorpos = 0;
   let numConnected = 0;
-  let maxConnections = 12;
-  let minDistance = 111;
-  let maxSpeed = 0.4;
-  let limitConnections = false;
+  const maxConnections = 12;
+  const minDistance = 111;
+  const maxSpeed = 0.4;
+  const limitConnections = false;
 
   const linesRef = useRef<THREE.LineSegments | null>(null);
   const dotsRef = useRef<THREE.Points | null>(null);
+  console.log(setParticleCount);
 
-//   const controls = useControls({
-//     showDots: {
-//       value: true,
-//       onChange: (value) => {
-//         if (dotsRef.current) {
-//           dotsRef.current.visible = value;
-//         }
-//       },
-//     },
-//     showLines: {
-//       value: true,
-//       onChange: (value) => {
-//         if (linesRef.current) {
-//           linesRef.current.visible = value;
-//         }
-//       },
-//     },
-//     limitConnections: {
-//       value: true,
-//       onChange: (value) => {
-//         limitConnections = value;
-//       },
-//     },
-//     maxConnections: {
-//       value: 12,
-//       min: 0,
-//       max: 30,
-//       step: 1,
-//       onChange: (value) => {
-//         maxConnections = Number(value);
-//       },
-//     },
-//     minDistance: {
-//       value: 111,
-//       min: 10,
-//       max: 300,
-//       step: 1,
-//       onChange: (value) => {
-//         minDistance = Number(value);
-//       },
-//     },
-//     maxSpeed: {
-//       value: 0.4,
-//       min: 0,
-//       max: 10,
-//       step: 0.1,
-//       onChange: (value) => {
-//         maxSpeed = Number(value);
-//       },
-//     },
-//     particleCount: {
-//       value: 751,
-//       min: 0,
-//       max: maxParticleCount,
-//       step: 1,
-//       onChange: (value) => {
-//         setParticleCount(Number(value)); // Use state setter
-//       },
-//     },
-//   });
+  //   const controls = useControls({
+  //     showDots: {
+  //       value: true,
+  //       onChange: (value) => {
+  //         if (dotsRef.current) {
+  //           dotsRef.current.visible = value;
+  //         }
+  //       },
+  //     },
+  //     showLines: {
+  //       value: true,
+  //       onChange: (value) => {
+  //         if (linesRef.current) {
+  //           linesRef.current.visible = value;
+  //         }
+  //       },
+  //     },
+  //     limitConnections: {
+  //       value: true,
+  //       onChange: (value) => {
+  //         limitConnections = value;
+  //       },
+  //     },
+  //     maxConnections: {
+  //       value: 12,
+  //       min: 0,
+  //       max: 30,
+  //       step: 1,
+  //       onChange: (value) => {
+  //         maxConnections = Number(value);
+  //       },
+  //     },
+  //     minDistance: {
+  //       value: 111,
+  //       min: 10,
+  //       max: 300,
+  //       step: 1,
+  //       onChange: (value) => {
+  //         minDistance = Number(value);
+  //       },
+  //     },
+  //     maxSpeed: {
+  //       value: 0.4,
+  //       min: 0,
+  //       max: 10,
+  //       step: 0.1,
+  //       onChange: (value) => {
+  //         maxSpeed = Number(value);
+  //       },
+  //     },
+  //     particleCount: {
+  //       value: 751,
+  //       min: 0,
+  //       max: maxParticleCount,
+  //       step: 1,
+  //       onChange: (value) => {
+  //         setParticleCount(Number(value)); // Use state setter
+  //       },
+  //     },
+  //   });
 
   const segments = maxParticleCount * maxParticleCount;
   const positions = useMemo(() => new Float32Array(segments * 3), [segments]);

@@ -77,7 +77,7 @@ const ServicesSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <div
               key={service.title}
               className={`group relative p-10 rounded-3xl bg-gradient-to-br ${service.gradient} backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-700 hover:scale-105 hover:shadow-2xl`}
@@ -97,7 +97,7 @@ const ServicesSection = () => {
                 </p>
 
                 <div className="space-y-4 mb-8">
-                  {service.features.map((feature, idx) => (
+                  {service.features.map((feature) => (
                     <div key={feature} className="flex items-center group/item">
                       <div className="w-1.5 h-1.5 bg-primary rounded-full mr-4 group-hover/item:scale-150 transition-transform" />
                       <span className="text-muted-foreground group-hover/item:text-foreground transition-colors">

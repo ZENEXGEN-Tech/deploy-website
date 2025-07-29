@@ -1,13 +1,15 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import HeroGloble from "./HeroGloble";
 import { NumberTicker } from "../ui/number-ticker";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export const HeroSection = () => {
   return (
     <section className="relative min-h-screen bg-muted/30 overflow-hidden">
       <div className="container mx-auto px-4 min-h-screen flex items-center justify-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:px-10 items-center w-full max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:px-10 items-center w-full max-w-7xl mx-auto mt-26">
           {/* Left side - Text content */}
           <div className="space-y-8 z-10 relative order-2 lg:order-1">
             <div className="space-y-6">
@@ -27,13 +29,16 @@ export const HeroSection = () => {
             </div>
 
             <div className="flex gap-4 flex-wrap">
-              <Button
-                size="lg"
-                className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 h rounded-2xl h-16 text-xl font-bold"
+              <Link
+                href={"/services"}
+                className={
+                  (cn(buttonVariants({ size: "lg" })),
+                  "bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 flex items-center rounded-2xl h-16 text-xl font-bold")
+                }
               >
                 Get Started
                 <ArrowRight className="ml-2 h-8 w-8" />
-              </Button>
+              </Link>
             </div>
 
             {/* Stats or features */}
@@ -66,7 +71,7 @@ export const HeroSection = () => {
           </div>
 
           {/* Right side - Globe */}
-          <div className="relative h-[500px] md:h-[600px] lg:h-[700px] order-1 lg:order-2 ">
+          <div className="relative h-[500px] md:h-[600px] lg:h-[700px] order-1 lg:order-2 lg:block hidden">
             <HeroGloble />
           </div>
         </div>

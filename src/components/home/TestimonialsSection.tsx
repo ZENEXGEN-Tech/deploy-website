@@ -27,6 +27,30 @@ const TestimonialsSection = () => {
       rating: 5,
       company: "InnovateCorp",
     },
+    {
+      name: "Sarah Johnson",
+      role: "CTO at TechFlow",
+      content:
+        "ZENEXGEN transformed our legacy systems into a modern, scalable platform. Their AI integration increased our efficiency by 300%.",
+      rating: 5,
+      company: "TechFlow",
+    },
+    {
+      name: "Michael Chen",
+      role: "Founder at StartupX",
+      content:
+        "The mobile app they developed exceeded our expectations. Clean code, beautiful design, and delivered ahead of schedule.",
+      rating: 5,
+      company: "StartupX",
+    },
+    {
+      name: "Emma Rodriguez",
+      role: "VP of Operations at InnovateCorp",
+      content:
+        "Their automation solutions streamlined our entire workflow. We saved 40 hours per week and improved accuracy significantly.",
+      rating: 5,
+      company: "InnovateCorp",
+    },
   ];
 
   return (
@@ -44,8 +68,8 @@ const TestimonialsSection = () => {
             What Our <span className="text-gradient">Clients Say</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Don't just take our word for it. Here's what our clients have to say
-            about their experience working with ZENEXGEN
+            Don&apos;t just take our word for it. Here&apos;s what our clients
+            have to say about their experience working with ZENEXGEN
           </p>
         </div>
 
@@ -62,7 +86,7 @@ const TestimonialsSection = () => {
               </div>
 
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                "{testimonial.content}"
+                &quot;{testimonial.content}&quot;
               </p>
 
               <div className="flex items-center mb-6">

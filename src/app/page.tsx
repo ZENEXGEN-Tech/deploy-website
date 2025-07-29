@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, Sparkles } from "lucide-react";
-
-import ClientLogos from "@/components/home/ClientsSection";
 import { HeroSection } from "@/components/home/HeroSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import WhyZenexgenSection from "@/components/home/WhyZenexgeSection";
@@ -11,7 +9,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <HeroSection />
-      <ClientLogos />
+      {/* <ClientLogos /> */}
       <ServicesSection />
       <WhyZenexgenSection />
       <TestimonialsSection />
@@ -74,7 +72,7 @@ export default function Home() {
                   desc: "Always here when you need us",
                   icon: "⚡",
                 },
-              ].map((stat, index) => (
+              ].map((stat) => (
                 <div key={stat.title} className="group text-center">
                   <div className="text-4xl mb-4 group-hover:scale-125 transition-transform duration-300">
                     {stat.icon}

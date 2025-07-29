@@ -2,12 +2,10 @@
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
+
 import {
   Select,
   SelectContent,
@@ -209,7 +207,8 @@ const Contact = () => {
       <Banner
         title={
           <>
-            Let's Build <span className="text-gradient">Something Great</span>
+            Let&apos;s Build{" "}
+            <span className="text-gradient">Something Great</span>
           </>
         }
         description="Ready to transform your business with intelligent software solutions? We'd love to hear about your project and discuss how we can help."
@@ -272,8 +271,8 @@ const Contact = () => {
                   Start Your <span className="text-gradient">Project</span>
                 </h2>
                 <p className="text-xl text-muted-foreground leading-relaxed">
-                  Fill out the form below and we'll get back to you as soon as
-                  possible.
+                  Fill out the form below and we&apos;ll get back to you as soon
+                  as possible.
                 </p>
               </div>
 
@@ -450,8 +449,8 @@ const Contact = () => {
                   <span className="text-gradient">Connect</span>
                 </h2>
                 <p className="text-xl text-muted-foreground leading-relaxed">
-                  Choose the best way to reach us. We're here to help and answer
-                  any questions you might have.
+                  Choose the best way to reach us. We&apos;re here to help and
+                  answer any questions you might have.
                 </p>
               </div>
 
@@ -621,7 +620,7 @@ const Contact = () => {
 
           <p className="text-2xl text-muted-foreground leading-relaxed mb-12 max-w-3xl mx-auto">
             Whether you have a specific project in mind or just want to explore
-            possibilities, we're excited to discuss how ZENEXGEN can help
+            possibilities, we&apos;re excited to discuss how ZENEXGEN can help
             transform your business.
           </p>
 

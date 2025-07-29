@@ -496,8 +496,12 @@ const serviceDetails = {
   },
 };
 
-export default function ServiceDetail({ params }: { params: { id: string } }) {
-  const { id: serviceId } = params;
+export default async function ServiceDetail({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id: serviceId } = await params;
   const service = serviceId
     ? serviceDetails[serviceId as keyof typeof serviceDetails]
     : null;
@@ -555,7 +559,7 @@ export default function ServiceDetail({ params }: { params: { id: string } }) {
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 {service.longDescription}
               </p>
-              <h3 className="text-2xl font-bold mb-6">What's Included</h3>
+              <h3 className="text-2xl font-bold mb-6">What&apos;s Included</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
                 {service.features.map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3">
@@ -664,8 +668,8 @@ export default function ServiceDetail({ params }: { params: { id: string } }) {
             Ready to Get Started?
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Let's discuss how {service.title.toLowerCase()} can transform your
-            business.
+            Let&apos;s discuss how {service.title.toLowerCase()} can transform
+            your business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
