@@ -82,19 +82,6 @@ export const TestimonialsSection = () => {
             </Card>
           ))}
         </div>
-
-        {/* Trust Indicators */}
-        <div className="mt-16 text-center">
-          <p className="text-sm text-muted-foreground mb-8">
-            Trusted by innovative companies worldwide
-          </p>
-          <div className="flex justify-center items-center space-x-12 opacity-60">
-            <div className="text-2xl font-bold">TechFlow</div>
-            <div className="text-2xl font-bold">StartupX</div>
-            <div className="text-2xl font-bold">InnovateCorp</div>
-            <div className="text-2xl font-bold">FutureScale</div>
-          </div>
-        </div>
       </div>
     </section>
   );
