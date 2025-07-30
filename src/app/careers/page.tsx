@@ -24,7 +24,7 @@ import {
   Award,
   Rocket,
 } from "lucide-react";
-import Link from "next/link";
+
 import { Banner } from "@/components/Banner";
 
 const openPositions = [

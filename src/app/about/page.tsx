@@ -14,6 +14,12 @@ import {
 } from "lucide-react";
 import { Banner } from "@/components/Banner";
 import OurStack from "@/components/OurStack";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description: "Discover the story behind our mission and values.",
+};
 
 const missionVisionData = [
   {
