@@ -5,6 +5,7 @@ import { Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,7 +59,6 @@ export const Navigation = () => {
     return location.startsWith(path);
   };
 
-
   return (
     <>
       {/* Background overlay for mobile menu */}
@@ -83,11 +83,14 @@ export const Navigation = () => {
         <div className="flex justify-between items-center h-16 sm:h-18">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
-            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">
-                Z
-              </span>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="zenexgen logo"
+              className="w-12 h-12"
+              width={1000}
+              height={1000}
+            />
+
             <span className="md:text-xl text-lg lg:text-xl font-bold text-foreground">
               ZENEXGEN
             </span>
