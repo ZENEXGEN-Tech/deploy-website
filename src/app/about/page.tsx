@@ -206,7 +206,7 @@ const MissionVisionSection = () => {
 
 const About = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen ">
       <Banner
         title={
           <>
@@ -292,9 +292,7 @@ const About = () => {
             </h2>
             <p className="text-2xl text-muted-foreground leading-relaxed mb-16 max-w-4xl mx-auto">
               Technology should be an enabler, not a barrier. We believe in
-              creating software that&apos;s intuitive, powerful, and
-              accessible—solutions that feel natural and empower people to
-              achieve more than they thought possible.
+              creating software that&apos;s intuitive, powerful, and accessible.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-16">

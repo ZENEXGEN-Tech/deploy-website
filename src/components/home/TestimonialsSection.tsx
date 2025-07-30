@@ -4,44 +4,44 @@ import { Badge } from "../ui/badge";
 const TestimonialsSection = () => {
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      role: "CTO at TechFlow",
+      name: "Bilal Ahmed",
+      role: "Founder & Director",
       content:
-        "ZENEXGEN transformed our legacy systems into a modern, scalable platform. Their AI integration increased our efficiency by 300%.",
+        "The e-commerce website you built for our Lahore startup boosted sales by 30%. Your support was seamless and professional.",
       rating: 5,
-      company: "TechFlow",
+      company: "GrowEasy Solutions",
     },
     {
-      name: "Michael Chen",
-      role: "Founder at StartupX",
+      name: "Dr. Hassan Raza",
+      role: "Co-Founder & Medical Director",
       content:
-        "The mobile app they developed exceeded our expectations. Clean code, beautiful design, and delivered ahead of schedule.",
+        "The telemedicine platform with offline mode you developed is perfect for rural Pakistan, serving 40% of our users flawlessly.",
       rating: 5,
-      company: "StartupX",
+      company: "VitalCore Technologies",
     },
     {
-      name: "Emma Rodriguez",
-      role: "VP of Operations at InnovateCorp",
+      name: "Omar Farooq",
+      role: "Chief Operating Officer",
       content:
-        "Their automation solutions streamlined our entire workflow. We saved 40 hours per week and improved accuracy significantly.",
+        "Your Shopify integration reduced cart abandonment by 15% for our online store. The glowing UI elements are a hit!",
       rating: 5,
-      company: "InnovateCorp",
+      company: "ShopVibe Creations",
     },
     {
-      name: "Sarah Johnson",
-      role: "CTO at TechFlow",
+      name: "Ali Raza",
+      role: "Managing Director",
       content:
-        "ZENEXGEN transformed our legacy systems into a modern, scalable platform. Their AI integration increased our efficiency by 300%.",
+        "The logistics dashboard you built saved our Islamabad startup 10 hours/week. Your team’s expertise is unmatched.",
       rating: 5,
-      company: "TechFlow",
+      company: "FlowTech Ventures",
     },
     {
-      name: "Michael Chen",
-      role: "Founder at StartupX",
+      name: "Imran Sheikh",
+      role: "Chief Financial Officer",
       content:
-        "The mobile app they developed exceeded our expectations. Clean code, beautiful design, and delivered ahead of schedule.",
+        "Your custom ERP cut our manufacturing costs by PKR 50,000/month.",
       rating: 5,
-      company: "StartupX",
+      company: "InnoGrid Solution",
     },
     {
       name: "Emma Rodriguez",

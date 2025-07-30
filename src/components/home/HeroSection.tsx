@@ -22,7 +22,7 @@ export const HeroSection = () => {
               </h1>
 
               <p className="text-xl sm:text-2xl text-black/70 leading-relaxed font-light">
-                We deliver cutting-edge technology solutions that drive
+                We deliver cutting-edge technological solutions that drive
                 sustainable growth and digital transformation. Partner with us
                 to unlock your business potential in the digital age.
               </p>

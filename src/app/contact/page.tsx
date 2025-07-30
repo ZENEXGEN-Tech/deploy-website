@@ -66,7 +66,7 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Call Us",
-    content: "+1 (555) 123-4567",
+    content: "+92 (300) 5888880",
     description: "Mon-Fri from 8am to 6pm PST",
     gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
     iconBg: "from-green-500 to-emerald-600",

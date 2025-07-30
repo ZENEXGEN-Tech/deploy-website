@@ -80,15 +80,12 @@ export const Footer = () => {
               <div className="flex items-center space-x-3  hover:text-emerald-400 transition-colors">
                 <Phone className="h-4 w-4 text-emerald-400" />
                 <a href="tel:+025551234567" className="text-sm">
-                  +02 (555) 123-4567
+                  +92 (300) 5888880
                 </a>
               </div>
               <div className="flex items-center space-x-3 ">
                 <MapPin className="h-4 w-4 text-emerald-400" />
                 <span className="text-sm">Karachi, Pakistan</span>
-              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                <Phone className="h-4 w-4" />
-                <span>+92 (300) 5888880</span>
               </div>
             </div>
 
