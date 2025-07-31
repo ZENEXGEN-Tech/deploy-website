@@ -12,6 +12,11 @@ export const Navigation = () => {
 
   const location = usePathname();
 
+  // Hide navigation on admin routes
+  if (location.startsWith("/admin")) {
+    return null;
+  }
+
   // Close mobile menu when clicking outside or resizing
   useEffect(() => {
     const handleResize = () => {
