@@ -1,13 +1,9 @@
-"use client";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+// app/services/page.tsx (Server Component)
 import {
   Code2,
   Brain,
   Smartphone,
   Zap,
-  ArrowRight,
   Database,
   Cloud,
   Shield,
@@ -15,14 +11,18 @@ import {
   Sparkles,
   Star,
   CheckCircle,
+  ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { Banner } from "@/components/Banner";
+import { ServicesFilter } from "@/components/services/ServicesFilter";
 
-const services = [
+// Create services data without icon components for server-client transfer
+const servicesData = [
   {
     id: "custom-software-development",
-    icon: Code2,
+    iconName: "Code2",
     title: "Custom Software Development",
     shortDescription:
       "Tailored software solutions built with cutting-edge technologies to meet your unique business requirements.",
@@ -38,7 +38,7 @@ const services = [
   },
   {
     id: "ai-machine-learning",
-    icon: Brain,
+    iconName: "Brain",
     title: "AI & Machine Learning",
     shortDescription:
       "Intelligent solutions that learn, adapt, and optimize your business processes for maximum efficiency.",
@@ -54,7 +54,7 @@ const services = [
   },
   {
     id: "web-mobile-apps",
-    icon: Smartphone,
+    iconName: "Smartphone",
     title: "Web & Mobile Apps",
     shortDescription:
       "Responsive web applications and native mobile apps that provide exceptional user experiences.",
@@ -70,7 +70,7 @@ const services = [
   },
   {
     id: "automation-digital-transformation",
-    icon: Zap,
+    iconName: "Zap",
     title: "Automation & Digital Transformation",
     shortDescription:
       "Streamline operations and accelerate growth through intelligent automation and digital innovation.",
@@ -82,7 +82,7 @@ const services = [
   },
   {
     id: "cloud-infrastructure",
-    icon: Cloud,
+    iconName: "Cloud",
     title: "Cloud Infrastructure",
     shortDescription:
       "Scalable cloud solutions that ensure your applications perform optimally under any load.",
@@ -98,7 +98,7 @@ const services = [
   },
   {
     id: "cybersecurity-solutions",
-    icon: Shield,
+    iconName: "Shield",
     title: "Cybersecurity Solutions",
     shortDescription:
       "Comprehensive security frameworks to protect your digital assets and ensure compliance.",
@@ -114,7 +114,7 @@ const services = [
   },
   {
     id: "data-analytics",
-    icon: Database,
+    iconName: "Database",
     title: "Data Analytics & Business Intelligence",
     shortDescription:
       "Transform raw data into actionable insights that drive strategic business decisions.",
@@ -130,7 +130,7 @@ const services = [
   },
   {
     id: "iot-solutions",
-    icon: Cpu,
+    iconName: "Cpu",
     title: "IoT Solutions",
     shortDescription:
       "Connected device ecosystems that enable smart automation and real-time monitoring.",
@@ -143,32 +143,35 @@ const services = [
 ];
 
 const categories = [
-  { name: "All", count: services.length },
+  { name: "All", count: servicesData.length },
   {
     name: "Development",
-    count: services.filter((s) => s.category === "Development").length,
+    count: servicesData.filter((s) => s.category === "Development").length,
   },
   {
     name: "AI/ML",
-    count: services.filter((s) => s.category === "AI/ML").length,
+    count: servicesData.filter((s) => s.category === "AI/ML").length,
   },
   {
     name: "Automation",
-    count: services.filter((s) => s.category === "Automation").length,
+    count: servicesData.filter((s) => s.category === "Automation").length,
   },
   {
     name: "Infrastructure",
-    count: services.filter((s) => s.category === "Infrastructure").length,
+    count: servicesData.filter((s) => s.category === "Infrastructure").length,
   },
   {
     name: "Security",
-    count: services.filter((s) => s.category === "Security").length,
+    count: servicesData.filter((s) => s.category === "Security").length,
   },
   {
     name: "Analytics",
-    count: services.filter((s) => s.category === "Analytics").length,
+    count: servicesData.filter((s) => s.category === "Analytics").length,
   },
-  { name: "IoT", count: services.filter((s) => s.category === "IoT").length },
+  {
+    name: "IoT",
+    count: servicesData.filter((s) => s.category === "IoT").length,
+  },
 ];
 
 const stats = [
@@ -184,13 +187,6 @@ const stats = [
 ];
 
 export default function Services() {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filteredServices =
-    activeCategory === "All"
-      ? services
-      : services.filter((service) => service.category === activeCategory);
-
   return (
     <div className="min-h-screen">
       <Banner
@@ -225,106 +221,8 @@ export default function Services() {
             </p>
           </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-3 mb-20">
-            {categories.map((category) => (
-              <Button
-                key={category.name}
-                variant={
-                  category.name === activeCategory ? "default" : "outline"
-                }
-                className={`rounded-full transition-all duration-300 group ${
-                  category.name === activeCategory
-                    ? "bg-gradient-primary hover:shadow-glow scale-105"
-                    : "hover:scale-105 hover:border-primary/50"
-                }`}
-                onClick={() => setActiveCategory(category.name)}
-              >
-                <span>{category.name}</span>
-                <span
-                  className={`ml-2 text-xs px-2 py-0.5 rounded-full ${
-                    category.name === activeCategory
-                      ? "bg-white/20"
-                      : "bg-primary/10 text-primary group-hover:bg-primary/20"
-                  }`}
-                >
-                  {category.count}
-                </span>
-              </Button>
-            ))}
-          </div>
-
-          {/* Services Grid */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            layout
-          >
-            {filteredServices.map((service) => (
-              <section
-                key={service.id}
-                className={`group relative p-8 rounded-3xl bg-gradient-to-br ${service.gradient} backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-700 hover:scale-105 hover:shadow-2xl h-full flex flex-col`}
-              >
-                {/* Floating Icon */}
-                <div
-                  className={`absolute -top-6 left-8 w-14 h-14 bg-gradient-to-r ${service.iconBg} rounded-2xl flex items-center justify-center shadow-2xl group-hover:rotate-12 transition-transform duration-500`}
-                >
-                  <service.icon className="h-7 w-7 text-white" />
-                </div>
-
-                <div className="pt-8 flex flex-col h-full">
-                  {/* Category Badge */}
-                  <div
-                    className={`inline-flex items-center px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm mb-4 self-start`}
-                  >
-                    <span className="text-xs font-medium">
-                      {service.category}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
-                    {service.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-muted-foreground mb-6 leading-relaxed flex-1">
-                    {service.shortDescription}
-                  </p>
-
-                  {/* Features */}
-                  <div className="space-y-3 mb-8">
-                    {service.features.map((feature) => (
-                      <div
-                        key={feature}
-                        className="flex items-center group/item"
-                      >
-                        <div
-                          className={`w-1.5 h-1.5 ${service.accent.replace("text-", "bg-")} rounded-full mr-3 group-hover/item:scale-150 transition-transform`}
-                        />
-                        <span className="text-sm text-muted-foreground group-hover/item:text-foreground transition-colors">
-                          {feature}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Learn More Link */}
-                  <Link
-                    href={`/services/${service.id}`}
-                    className="flex items-center text-primary group-hover:text-primary-glow transition-colors cursor-pointer mt-auto group/link"
-                  >
-                    <span className="text-sm font-medium">Learn more</span>
-                    <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover/link:translate-x-1" />
-                  </Link>
-                </div>
-
-                {/* Decorative Element */}
-                <div
-                  className={`absolute -bottom-2 -right-2 w-20 h-20 ${service.accent.replace("text-", "bg-")}/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700`}
-                ></div>
-              </section>
-            ))}
-          </motion.div>
+          {/* Client Component for filtering */}
+          <ServicesFilter services={servicesData} categories={categories} />
         </div>
       </section>
 
@@ -375,8 +273,8 @@ export default function Services() {
           </h2>
 
           <p className="text-2xl text-muted-foreground leading-relaxed mb-12 max-w-3xl mx-auto">
-            Let&apos;s discuss how our services can help you achieve your goals and
-            drive meaningful growth.
+            Let&apos;s discuss how our services can help you achieve your goals
+            and drive meaningful growth.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">

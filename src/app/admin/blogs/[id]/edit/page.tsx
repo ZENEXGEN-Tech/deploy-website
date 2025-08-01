@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useQuery, useMutation } from "convex/react";
+import { CldUploadButton } from "next-cloudinary";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,7 +17,16 @@ import {
 } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Plus, X, Save, Eye, Loader2 } from "lucide-react";
+import {
+  ArrowLeft,
+  Plus,
+  X,
+  Save,
+  Eye,
+  Loader2,
+  Upload,
+  Trash2,
+} from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { api } from "../../../../../../convex/_generated/api";
@@ -70,6 +80,7 @@ export default function EditBlogPage({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showPreview, setShowPreview] = useState(false);
+  const [isImageUploading, setIsImageUploading] = useState(false);
 
   // Load blog data when it's available
   useEffect(() => {
@@ -115,6 +126,25 @@ export default function EditBlogPage({
       ...prev,
       tags: prev.tags.map((tag, i) => (i === index ? value : tag)),
     }));
+  };
+
+  const handleImageUpload = (result: any) => {
+    setIsImageUploading(false);
+    if (result?.info?.secure_url) {
+      handleInputChange("imageUrl", result.info.secure_url);
+      toast.success("Image uploaded successfully!");
+    }
+  };
+
+  const handleImageUploadError = (error: any) => {
+    setIsImageUploading(false);
+    console.error("Upload error:", error);
+    toast.error("Failed to upload image");
+  };
+
+  const removeImage = () => {
+    handleInputChange("imageUrl", "");
+    toast.success("Image removed");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -171,7 +201,7 @@ export default function EditBlogPage({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6  min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -272,19 +302,106 @@ export default function EditBlogPage({
                   </div>
                 </div>
 
+                {/* Featured Image Upload */}
                 <div>
-                  <Label htmlFor="imageUrl">
-                    Featured Image URL (Optional)
-                  </Label>
-                  <Input
-                    id="imageUrl"
-                    value={formData.imageUrl}
-                    onChange={(e) =>
-                      handleInputChange("imageUrl", e.target.value)
-                    }
-                    placeholder="https://example.com/image.jpg"
-                    type="url"
-                  />
+                  <Label>Featured Image</Label>
+                  <div className="mt-2 space-y-4">
+                    {formData.imageUrl ? (
+                      <div className="relative">
+                        <div className="relative w-full h-48 border-2 border-dashed border-gray-300 rounded-lg overflow-hidden">
+                          <img
+                            src={formData.imageUrl}
+                            alt="Featured image preview"
+                            className="w-full h-full object-cover"
+                          />
+                          <Button
+                            type="button"
+                            variant="destructive"
+                            size="sm"
+                            className="absolute top-2 right-2"
+                            onClick={removeImage}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                        <div className="mt-2 flex gap-2">
+                          <CldUploadButton
+                            uploadPreset={
+                              process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+                            }
+                            onSuccess={handleImageUpload}
+                            onError={handleImageUploadError}
+                            onUpload={() => setIsImageUploading(true)}
+                            options={{
+                              maxFiles: 1,
+                              resourceType: "image",
+                              maxImageFileSize: 5000000, // 5MB
+                              sources: ["local", "url", "camera"],
+                              multiple: false,
+                              cropping: true,
+                              croppingAspectRatio: 16 / 9,
+                              folder: "blog-images",
+                            }}
+                            className="flex items-center px-3 py-2 text-sm bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
+                          >
+                            <Upload className="mr-2 h-4 w-4" />
+                            Replace Image
+                          </CldUploadButton>
+                          <p className="text-sm text-gray-500 flex items-center">
+                            Current image loaded. Click "Replace Image" to
+                            update.
+                          </p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="w-full h-48 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center bg-gray-50">
+                        {isImageUploading ? (
+                          <div className="flex flex-col items-center space-y-2">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                            <p className="text-sm text-gray-600">
+                              Uploading image...
+                            </p>
+                          </div>
+                        ) : (
+                          <div className="flex flex-col items-center space-y-4">
+                            <Upload className="h-12 w-12 text-gray-400" />
+                            <div className="text-center space-y-2">
+                              <p className="text-sm text-gray-600">
+                                Upload a featured image for your blog post
+                              </p>
+                              <CldUploadButton
+                                uploadPreset={
+                                  process.env
+                                    .NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+                                }
+                                onSuccess={handleImageUpload}
+                                onError={handleImageUploadError}
+                                onUpload={() => setIsImageUploading(true)}
+                                options={{
+                                  maxFiles: 1,
+                                  resourceType: "image",
+                                  maxImageFileSize: 5000000, // 5MB
+                                  sources: ["local", "url", "camera"],
+                                  multiple: false,
+                                  cropping: true,
+                                  croppingAspectRatio: 16 / 9,
+                                  folder: "blog-images",
+                                }}
+                                className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
+                              >
+                                <Upload className="mr-2 h-4 w-4" />
+                                Upload Image
+                              </CldUploadButton>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    <p className="text-xs text-gray-500">
+                      Recommended size: 1200x675px (16:9 ratio). Max file size:
+                      5MB. Supports JPG, PNG, and WebP formats.
+                    </p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -491,6 +608,15 @@ export default function EditBlogPage({
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
+                  {formData.imageUrl && (
+                    <div className="w-full h-32 rounded-lg overflow-hidden">
+                      <img
+                        src={formData.imageUrl}
+                        alt="Blog preview"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
                   {formData.title && (
                     <h3 className="font-semibold line-clamp-2">
                       {formData.title}
