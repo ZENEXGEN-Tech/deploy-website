@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { useAuth } from "@/contexts/auth-context";
+import { useUser, useClerk } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import {
   LayoutDashboard,
@@ -15,24 +15,28 @@ import {
   Home,
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { validEmail } from "@/utils/constants";
 
 export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { admin, logout, isLoading } = useAuth();
+  const { user, isLoaded } = useUser();
+  const { signOut } = useClerk();
   const router = useRouter();
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  // Check if user is authorized admin
+  const isAuthorized = user?.primaryEmailAddress?.emailAddress === validEmail;
+
   useEffect(() => {
-    if (!isLoading && !admin && pathname !== "/admin/login") {
-      router.push("/admin/login");
+    if (isLoaded && (!user || !isAuthorized) && pathname !== "/admin/sign-in") {
+      router.push("/admin/sign-in");
     }
-  }, [admin, isLoading, pathname, router]);
+  }, [user, isLoaded, isAuthorized, pathname, router]);
 
   // Close sidebar when clicking outside on mobile
   useEffect(() => {
@@ -64,7 +68,7 @@ export default function AdminLayout({
     };
   }, [sidebarOpen]);
 
-  if (isLoading) {
+  if (!isLoaded) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="animate-spin rounded-full h-12 w-12 border-2 border-primary border-t-transparent"></div>
@@ -72,11 +76,11 @@ export default function AdminLayout({
     );
   }
 
-  if (!admin && pathname !== "/admin/login") {
+  if ((!user || !isAuthorized) && pathname !== "/admin/sign-in") {
     return null;
   }
 
-  if (pathname === "/admin/login") {
+  if (pathname === "/admin/sign-in") {
     return <div className="min-h-screen bg-gray-50">{children}</div>;
   }
 
@@ -107,9 +111,8 @@ export default function AdminLayout({
     },
   ];
 
-  const handleLogout = () => {
-    logout();
-    router.push("/admin/login");
+  const handleLogout = async () => {
+    await signOut();
   };
 
   return (
@@ -196,15 +199,20 @@ export default function AdminLayout({
           <div className="flex items-center mb-4 p-3 bg-white rounded-lg border border-gray-200">
             <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mr-3 shadow-sm">
               <span className="text-sm font-bold text-primary-foreground">
-                {admin?.name?.charAt(0)?.toUpperCase() || "A"}
+                {user?.firstName?.charAt(0)?.toUpperCase() ||
+                  user?.emailAddresses[0]?.emailAddress
+                    ?.charAt(0)
+                    ?.toUpperCase() ||
+                  "A"}
               </span>
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-gray-900 truncate">
-                {admin?.name || "Admin User"}
+                {user?.fullName || user?.firstName || "Admin User"}
               </p>
               <p className="text-xs text-gray-500 truncate">
-                {admin?.email || "admin@zenexgen.com"}
+                {user?.primaryEmailAddress?.emailAddress ||
+                  "admin@zenexgen.com"}
               </p>
             </div>
           </div>

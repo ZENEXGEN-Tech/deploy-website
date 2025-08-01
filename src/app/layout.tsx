@@ -5,8 +5,8 @@ import { Navigation } from "@/components/layout/Navigation";
 import { Toaster } from "sonner";
 import { Footer } from "@/components/layout/Footer";
 import { MetaData as generatedMetadata } from "@/utils/constants";
-import { ConvexClientProvider } from "@/providers/ConvexProvider";
-import { AuthProvider } from "@/contexts/auth-context";
+import { ClerkProvider } from "@clerk/nextjs";
+import ConvexClientProvider from "@/providers/convex-client-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,9 +32,9 @@ export default function RootLayout({
       >
         <Navigation />
         <Toaster position="top-center" richColors />
-        <ConvexClientProvider>
-          <AuthProvider>{children}</AuthProvider>
-        </ConvexClientProvider>
+        <ClerkProvider>
+          <ConvexClientProvider>{children}</ConvexClientProvider>
+        </ClerkProvider>
         <Footer />
       </body>
     </html>

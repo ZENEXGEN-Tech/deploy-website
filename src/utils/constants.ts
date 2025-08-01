@@ -52,3 +52,5 @@ export type Metadata = {
     follow: boolean;
   };
 };
+
+export const validEmail = process.env.NEXT_PUBLIC_EMAIL_ADDRESSS;

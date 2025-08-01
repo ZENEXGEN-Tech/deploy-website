@@ -15,10 +15,17 @@ import React, { useState } from "react";
 import { Input } from "../ui/input";
 import { Button, buttonVariants } from "../ui/button";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 export const Footer = () => {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const location = usePathname();
+
+  // Hide navigation on admin routes
+  if (location.startsWith("/admin")) {
+    return null;
+  }
 
   const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

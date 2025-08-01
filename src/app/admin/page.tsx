@@ -1,6 +1,8 @@
 "use client";
 
 import { useQuery } from "convex/react";
+import { useUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 import {
   Card,
   CardContent,
@@ -23,10 +25,33 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { api } from "../../../convex/_generated/api";
+import { validEmail } from "@/utils/constants";
 
 export default function AdminDashboard() {
+  const { user, isLoaded } = useUser();
   const blogs = useQuery(api.blogs.getAllBlogs, { published: undefined });
   const careers = useQuery(api.careers.getAllCareers, { isActive: undefined });
+
+  // Redirect to sign-in if not authenticated
+  if (isLoaded && !user) {
+    redirect("/admin/sign-in");
+  }
+
+  const isAuthorized = user?.primaryEmailAddress?.emailAddress === validEmail;
+
+  // Redirect if not authorized
+  if (isLoaded && user && !isAuthorized) {
+    redirect("/");
+  }
+
+  // Show loading state
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-2 border-primary border-t-transparent"></div>
+      </div>
+    );
+  }
 
   const blogStats = {
     total: blogs?.length || 0,
@@ -87,7 +112,7 @@ export default function AdminDashboard() {
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
           <p className="text-gray-600 mt-1">
-            Welcome back! Here's what's happening.
+            Welcome back, {user?.firstName || "Admin"}! Here's what's happening.
           </p>
         </div>
         <div className="flex gap-3">
