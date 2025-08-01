@@ -325,8 +325,8 @@ export default function AdminCareersPage() {
                         <AlertDialogHeader>
                           <AlertDialogTitle>Delete Career</AlertDialogTitle>
                           <AlertDialogDescription>
-                            Are you sure you want to delete "{career.title}"?
-                            This action cannot be undone.
+                            Are you sure you want to delete `&quot;
+                            {career.title}`&quot;? This action cannot be undone.
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>

@@ -112,7 +112,8 @@ export default function AdminDashboard() {
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
           <p className="text-gray-600 mt-1">
-            Welcome back, {user?.firstName || "Admin"}! Here's what's happening.
+            Welcome back, {user?.firstName || "Admin"}! Here&apos;s what&apos;s
+            happening.
           </p>
         </div>
         <div className="flex gap-3">
