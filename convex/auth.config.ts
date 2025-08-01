@@ -1,7 +1,7 @@
 export default {
   providers: [
     {
-      domain: "https://perceptive-kiwi-827.convex.cloud",
+      domain: "https://actual-reindeer-58.clerk.accounts.dev",
       applicationID: "convex",
     },
   ],

@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { validEmail } from "@/utils/constants";
+import { isAdminEmail } from "@/utils/constants";
 
 export default function AdminLayout({
   children,
@@ -30,11 +30,22 @@ export default function AdminLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Check if user is authorized admin
-  const isAuthorized = user?.primaryEmailAddress?.emailAddress === validEmail;
+  const isAuthorized = isAdminEmail(user?.primaryEmailAddress?.emailAddress);
 
   useEffect(() => {
-    if (isLoaded && (!user || !isAuthorized) && pathname !== "/admin/sign-in") {
-      router.push("/admin/sign-in");
+    // Only redirect if Clerk has finished loading
+    if (isLoaded) {
+      // If no user and not on sign-in page, redirect to sign-in
+      if (!user && pathname !== "/admin/sign-in") {
+        router.push("/admin/sign-in");
+        return;
+      }
+
+      // If user exists but not authorized and not on sign-in page, redirect to home
+      if (user && !isAuthorized && pathname !== "/admin/sign-in") {
+        router.push("/");
+        return;
+      }
     }
   }, [user, isLoaded, isAuthorized, pathname, router]);
 
@@ -68,6 +79,7 @@ export default function AdminLayout({
     };
   }, [sidebarOpen]);
 
+  // Show loading state while Clerk is initializing
   if (!isLoaded) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -76,12 +88,14 @@ export default function AdminLayout({
     );
   }
 
-  if ((!user || !isAuthorized) && pathname !== "/admin/sign-in") {
-    return null;
-  }
-
+  // If on sign-in page, render children without layout
   if (pathname === "/admin/sign-in") {
     return <div className="min-h-screen bg-gray-50">{children}</div>;
+  }
+
+  // If not authorized or no user, don't render anything (redirect will happen)
+  if (!user || !isAuthorized) {
+    return null;
   }
 
   const navigation = [
@@ -113,6 +127,7 @@ export default function AdminLayout({
 
   const handleLogout = async () => {
     await signOut();
+    router.push("/admin/sign-in");
   };
 
   return (

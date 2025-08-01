@@ -9,16 +9,15 @@ import Image from "next/image";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const location = usePathname();
 
-  // Hide navigation on admin routes
-  if (location.startsWith("/admin")) {
-    return null;
-  }
-
-  // Close mobile menu when clicking outside or resizing
+  // Always call hooks first, before any conditional returns
   useEffect(() => {
+    // Only set up event listeners if not on admin routes
+    if (location.startsWith("/admin")) {
+      return;
+    }
+
     const handleResize = () => {
       if (window.innerWidth >= 768) {
         setIsOpen(false);
@@ -46,7 +45,12 @@ export const Navigation = () => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "unset";
     };
-  }, [isOpen]);
+  }, [isOpen, location]);
+
+  // Conditional return AFTER all hooks have been called
+  if (location.startsWith("/admin")) {
+    return null;
+  }
 
   const navigation = [
     { name: "Home", href: "/" },

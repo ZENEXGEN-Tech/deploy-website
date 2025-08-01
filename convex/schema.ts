@@ -1,15 +1,9 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
+// import { authTables } from "@convex-dev/auth/server";
 
 export default defineSchema({
-  // Admin users table
-  admins: defineTable({
-    email: v.string(),
-    password: v.string(), // In production, this should be hashed
-    name: v.string(),
-    role: v.string(),
-    createdAt: v.number(),
-  }).index("by_email", ["email"]),
+  // ...authTables,
 
   // Blog posts table
   blogs: defineTable({

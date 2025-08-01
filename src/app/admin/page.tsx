@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { api } from "../../../convex/_generated/api";
-import { validEmail } from "@/utils/constants";
+import { isAdminEmail } from "@/utils/constants";
 
 export default function AdminDashboard() {
   const { user, isLoaded } = useUser();
@@ -37,7 +37,7 @@ export default function AdminDashboard() {
     redirect("/admin/sign-in");
   }
 
-  const isAuthorized = user?.primaryEmailAddress?.emailAddress === validEmail;
+  const isAuthorized = isAdminEmail(user?.primaryEmailAddress?.emailAddress);
 
   // Redirect if not authorized
   if (isLoaded && user && !isAuthorized) {

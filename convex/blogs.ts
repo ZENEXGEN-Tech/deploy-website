@@ -1,6 +1,7 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { ConvexError } from "convex/values";
+import { requireAdmin } from "./lib/auth";
 
 function generateSlug(title: string): string {
   return title
@@ -103,6 +104,9 @@ export const createBlog = mutation({
     seoDescription: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    // Require admin authentication
+    await requireAdmin(ctx);
+
     const slug = generateSlug(args.title);
 
     // Check if slug already exists
@@ -144,6 +148,9 @@ export const updateBlog = mutation({
     seoDescription: v.optional(v.string()),
   },
   handler: async (ctx, { id, ...args }) => {
+    // Require admin authentication
+    await requireAdmin(ctx);
+
     const existingBlog = await ctx.db.get(id);
     if (!existingBlog) {
       throw new ConvexError("Blog not found");
@@ -178,6 +185,9 @@ export const updateBlog = mutation({
 export const deleteBlog = mutation({
   args: { id: v.id("blogs") },
   handler: async (ctx, { id }) => {
+    // Require admin authentication
+    await requireAdmin(ctx);
+
     const blog = await ctx.db.get(id);
     if (!blog) {
       throw new ConvexError("Blog not found");
@@ -195,6 +205,9 @@ export const createBlogCategory = mutation({
     color: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    // Require admin authentication
+    await requireAdmin(ctx);
+
     const slug = generateSlug(args.name);
 
     // Check if category already exists

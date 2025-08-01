@@ -1,6 +1,7 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { ConvexError } from "convex/values";
+import { requireAdmin } from "./lib/auth";
 
 function generateSlug(title: string): string {
   return title
@@ -134,6 +135,9 @@ export const createCareer = mutation({
     remoteAllowed: v.boolean(),
   },
   handler: async (ctx, args) => {
+    // Require admin authentication
+    await requireAdmin(ctx);
+
     const slug = generateSlug(args.title);
 
     // Check if slug already exists
@@ -177,6 +181,9 @@ export const updateCareer = mutation({
     remoteAllowed: v.boolean(),
   },
   handler: async (ctx, { id, ...args }) => {
+    // Require admin authentication
+    await requireAdmin(ctx);
+
     const existingCareer = await ctx.db.get(id);
     if (!existingCareer) {
       throw new ConvexError("Career not found");
@@ -211,6 +218,9 @@ export const updateCareer = mutation({
 export const deleteCareer = mutation({
   args: { id: v.id("careers") },
   handler: async (ctx, { id }) => {
+    // Require admin authentication
+    await requireAdmin(ctx);
+
     const career = await ctx.db.get(id);
     if (!career) {
       throw new ConvexError("Career not found");
@@ -249,6 +259,9 @@ export const submitApplication = mutation({
 export const getApplicationsForCareer = query({
   args: { careerId: v.id("careers") },
   handler: async (ctx, { careerId }) => {
+    // Require admin authentication for viewing applications
+    await requireAdmin(ctx);
+
     return await ctx.db
       .query("applications")
       .withIndex("by_career", (q) => q.eq("careerId", careerId))
