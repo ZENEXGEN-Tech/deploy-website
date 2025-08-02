@@ -1,6 +1,7 @@
 import { Banner } from "@/components/Banner";
 import { ContactClient } from "@/components/contact/ContactClient";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { contactStats } from "@/data";
 import { cn } from "@/lib/utils";
 import {
   CheckCircle,
@@ -20,33 +21,6 @@ export const metadata: Metadata = {
   title: "Contact Us",
   description: "Get in touch with us and let's build something great.",
 };
-
-const contactStats = [
-  {
-    icon: CheckCircle,
-    number: "24hrs",
-    label: "Response Time",
-    sublabel: "Average",
-  },
-  {
-    icon: Star,
-    number: "98%",
-    label: "Client Satisfaction",
-    sublabel: "Rating",
-  },
-  {
-    icon: Globe,
-    number: "50+",
-    label: "Countries Served",
-    sublabel: "Globally",
-  },
-  {
-    icon: Users,
-    number: "500+",
-    label: "Projects Delivered",
-    sublabel: "Successfully",
-  },
-];
 
 const Contact = () => {
   return (
@@ -78,8 +52,8 @@ const Contact = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {contactStats.map((stat, index) => (
-              <div key={index} className="text-center group">
+            {contactStats.map((stat) => (
+              <div key={stat.label} className="text-center group">
                 <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                   <stat.icon className="h-8 w-8 text-primary-foreground" />
                 </div>

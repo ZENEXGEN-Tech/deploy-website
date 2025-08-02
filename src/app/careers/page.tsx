@@ -14,72 +14,12 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Metadata } from "next";
+import { benefits, companyStats } from "@/data";
 
 export const metadata: Metadata = {
   title: "Careers",
   description: "Join our team and build the future of business.",
 };
-
-const benefits = [
-  {
-    icon: Heart,
-    title: "Health & Wellness",
-    description:
-      "Comprehensive health, dental, and vision insurance plus wellness stipend",
-    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
-    iconBg: "from-green-500 to-emerald-600",
-  },
-  {
-    icon: Zap,
-    title: "Flexible Work",
-    description: "Remote-first culture with flexible hours and unlimited PTO",
-    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
-    iconBg: "from-green-500 to-emerald-600",
-  },
-  {
-    icon: Trophy,
-    title: "Growth & Learning",
-    description:
-      "$2,000 annual learning budget for courses, conferences, and certifications",
-    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
-    iconBg: "from-green-500 to-emerald-600",
-  },
-  {
-    icon: Coffee,
-    title: "Great Perks",
-    description:
-      "Top-tier equipment, team retreats, and monthly team building events",
-    gradient: "from-green-500/20 via-emerald-500/20 to-teal-500/20",
-    iconBg: "from-green-500 to-emerald-600",
-  },
-];
-
-const companyStats = [
-  {
-    icon: Users,
-    number: "50+",
-    label: "Team Members",
-    sublabel: "Worldwide",
-  },
-  {
-    icon: Globe,
-    number: "15+",
-    label: "Countries",
-    sublabel: "Remote Team",
-  },
-  {
-    icon: Award,
-    number: "4.9",
-    label: "Glassdoor Rating",
-    sublabel: "Employee Satisfaction",
-  },
-  {
-    icon: Rocket,
-    number: "95%",
-    label: "Retention Rate",
-    sublabel: "Employee Growth",
-  },
-];
 
 const Careers = () => {
   return (
@@ -121,7 +61,7 @@ const Careers = () => {
 
           {/* Benefits Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-            {benefits.map((benefit, index) => (
+            {benefits.map((benefit) => (
               <div
                 key={benefit.title}
                 className={`group relative p-8 rounded-3xl bg-gradient-to-br ${benefit.gradient} backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-700 hover:scale-105 hover:shadow-2xl text-center`}
@@ -180,8 +120,8 @@ const Careers = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {companyStats.map((stat, index) => (
-              <div key={index} className="text-center group">
+            {companyStats.map((stat) => (
+              <div key={stat.label} className="text-center group">
                 <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                   <stat.icon className="h-8 w-8 text-primary-foreground" />
                 </div>

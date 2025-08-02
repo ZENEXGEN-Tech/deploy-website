@@ -1,6 +1,7 @@
 import { Banner } from "@/components/Banner";
 import { BlogClient } from "@/components/blog/BlogClient";
 import { Button } from "@/components/ui/button";
+import { blogStats } from "@/data";
 import {
   BookOpen,
   Eye,
@@ -18,33 +19,6 @@ export const metadata: Metadata = {
   title: "Blogs",
   description: "Latest tech insights and trends from the world of technology.",
 };
-
-const blogStats = [
-  {
-    icon: BookOpen,
-    number: "150+",
-    label: "Articles",
-    sublabel: "Published",
-  },
-  {
-    icon: Eye,
-    number: "50K+",
-    label: "Monthly Readers",
-    sublabel: "Globally",
-  },
-  {
-    icon: TrendingUp,
-    number: "95%",
-    label: "Reader Satisfaction",
-    sublabel: "Rating",
-  },
-  {
-    icon: Heart,
-    number: "10K+",
-    label: "Newsletter",
-    sublabel: "Subscribers",
-  },
-];
 
 export default function BlogPage() {
   return (
@@ -74,8 +48,8 @@ export default function BlogPage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {blogStats.map((stat, index) => (
-              <div key={index} className="text-center group">
+            {blogStats.map((stat) => (
+              <div key={stat.label} className="text-center group">
                 <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                   <stat.icon className="h-8 w-8 text-primary-foreground" />
                 </div>
