@@ -350,8 +350,8 @@ export default function EditBlogPage({
                             Replace Image
                           </CldUploadButton>
                           <p className="text-sm text-gray-500 flex items-center">
-                            Current image loaded. Click "Replace Image" to
-                            update.
+                            Current image loaded. Click &quot;Replace
+                            Image&quot; to update.
                           </p>
                         </div>
                       </div>
