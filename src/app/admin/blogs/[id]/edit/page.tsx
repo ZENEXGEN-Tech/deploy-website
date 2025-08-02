@@ -31,6 +31,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { api } from "../../../../../../convex/_generated/api";
 import { Id } from "../../../../../../convex/_generated/dataModel";
+import Image from "next/image";
 
 const defaultCategories = [
   "Technology",
@@ -79,7 +80,6 @@ export default function EditBlogPage({
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [showPreview, setShowPreview] = useState(false);
   const [isImageUploading, setIsImageUploading] = useState(false);
 
   // Load blog data when it's available
@@ -309,10 +309,12 @@ export default function EditBlogPage({
                     {formData.imageUrl ? (
                       <div className="relative">
                         <div className="relative w-full h-48 border-2 border-dashed border-gray-300 rounded-lg overflow-hidden">
-                          <img
-                            src={formData.imageUrl}
+                          <Image
+                            src={formData.imageUrl || "/placeholder.jpg"}
                             alt="Featured image preview"
                             className="w-full h-full object-cover"
+                            width={1000}
+                            height={1000}
                           />
                           <Button
                             type="button"
@@ -610,8 +612,10 @@ export default function EditBlogPage({
                 <div className="space-y-3">
                   {formData.imageUrl && (
                     <div className="w-full h-32 rounded-lg overflow-hidden">
-                      <img
-                        src={formData.imageUrl}
+                      <Image
+                        src={formData.imageUrl || "/placeholder.jpg"}
+                        width={1000}
+                        height={1000}
                         alt="Blog preview"
                         className="w-full h-full object-cover"
                       />

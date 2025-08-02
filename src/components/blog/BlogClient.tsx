@@ -31,6 +31,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { api } from "../../../convex/_generated/api";
+import Image from "next/image";
 
 // Category icons mapping
 const categoryIcons: Record<string, any> = {
@@ -285,8 +286,10 @@ export const BlogClient = () => {
                         <CardContent className="p-0">
                           {blog.imageUrl && (
                             <div className="aspect-video bg-muted overflow-hidden">
-                              <img
-                                src={blog.imageUrl}
+                              <Image
+                                src={blog.imageUrl || "/placeholder.jpg"}
+                                width={1000}
+                                height={1000}
                                 alt={blog.title}
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                               />
@@ -504,11 +507,10 @@ export const BlogClient = () => {
                       <div
                         className={`${viewMode === "list" ? "w-80 aspect-video" : "aspect-video"} overflow-hidden ${viewMode === "grid" ? "rounded-t-2xl" : "rounded-l-2xl"}`}
                       >
-                        <img
-                          src={
-                            blog.imageUrl ||
-                            "https://pg-p.ctme.caltech.edu/wp-content/uploads/sites/4/2023/03/future_of_ai.jpg"
-                          }
+                        <Image
+                          src={blog.imageUrl || "/placeholder.jpg"}
+                          width={1000}
+                          height={1000}
                           alt={blog.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />

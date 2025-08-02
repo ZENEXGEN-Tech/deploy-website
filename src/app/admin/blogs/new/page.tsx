@@ -21,6 +21,7 @@ import { ArrowLeft, Plus, X, Save, Eye, Upload, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { api } from "../../../../../convex/_generated/api";
+import Image from "next/image";
 
 const defaultCategories = [
   "Technology",
@@ -262,8 +263,10 @@ export default function NewBlogPage() {
                     {formData.imageUrl ? (
                       <div className="relative">
                         <div className="relative w-full h-48 border-2 border-dashed border-gray-300 rounded-lg overflow-hidden">
-                          <img
-                            src={formData.imageUrl}
+                          <Image
+                            src={formData.imageUrl || "/placeholder.jpg"}
+                            width={1000}
+                            height={1000}
                             alt="Featured image preview"
                             className="w-full h-full object-cover"
                           />
@@ -532,8 +535,10 @@ console.log('Hello World');
                 <div className="space-y-3">
                   {formData.imageUrl && (
                     <div className="w-full h-32 rounded-lg overflow-hidden">
-                      <img
-                        src={formData.imageUrl}
+                      <Image
+                        src={formData.imageUrl || "/placeholder.jpg"}
+                        width={1000}
+                        height={1000}
                         alt="Blog preview"
                         className="w-full h-full object-cover"
                       />
