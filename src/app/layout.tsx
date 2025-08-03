@@ -6,6 +6,8 @@ import { Toaster } from "sonner";
 import { Footer } from "@/components/layout/Footer";
 import { MetaData as generatedMetadata } from "@/utils/constants";
 import { Analytics } from "@vercel/analytics/next";
+import { ClerkProvider } from "@clerk/nextjs";
+import ConvexClientProvider from "@/providers/convex-client-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,10 +31,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navigation />
-        <Toaster position="top-center" richColors />
-        {children}
-        <Footer />
+        <ClerkProvider>
+          <ConvexClientProvider>
+            <Navigation />
+            <Toaster position="top-center" richColors />
+            {children}
+            <Footer />
+          </ConvexClientProvider>
+        </ClerkProvider>
       </body>
     </html>
   );
