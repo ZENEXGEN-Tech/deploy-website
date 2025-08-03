@@ -14,83 +14,13 @@ import {
 } from "lucide-react";
 import { Banner } from "@/components/Banner";
 import OurStack from "@/components/OurStack";
+import type { Metadata } from "next";
+import { coreValues, missionVisionData, processFlow } from "@/data";
 
-const missionVisionData = [
-  {
-    icon: Target,
-    title: "Our Mission",
-    description:
-      "Creating cutting-edge software solutions that combine AI, automation, and human creativity to solve complex business challenges.",
-    highlights: [
-      "Deliver cutting-edge solutions",
-      "Foster business growth",
-      "Enable digital transformation",
-    ],
-    gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
-    iconBg: "from-emerald-500 to-teal-600",
-  },
-  {
-    icon: Eye,
-    title: "Our Vision",
-    description:
-      "To be the leading force in intelligent software innovation, empowering businesses to thrive in the digital future.",
-    highlights: [
-      "Industry leadership",
-      "Future-focused innovation",
-      "Transformative impact",
-    ],
-    gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
-    iconBg: "from-emerald-500 to-teal-600",
-  },
-];
-
-const coreValues = [
-  {
-    icon: Heart,
-    title: "Excellence",
-    description:
-      "We strive for perfection in every line of code and every client interaction, delivering solutions that exceed expectations.",
-    accent: "text-rose-500",
-  },
-  {
-    icon: Lightbulb,
-    title: "Innovation",
-    description:
-      "We embrace emerging technologies to create tomorrow's solutions today, pushing the boundaries of what's possible.",
-    accent: "text-amber-500",
-  },
-];
-
-const processFlow = [
-  {
-    step: "01",
-    title: "Consultation",
-    description: "We analyze your business needs and technical requirements",
-    icon: Users,
-    duration: "1-2 days",
-  },
-  {
-    step: "02",
-    title: "Strategy",
-    description: "Custom roadmap and architecture planning for your solution",
-    icon: Target,
-    duration: "3-5 days",
-  },
-  {
-    step: "03",
-    title: "Development",
-    description: "Agile development with regular updates and feedback loops",
-    icon: Code,
-    duration: "2-12 weeks",
-  },
-  {
-    step: "04",
-    title: "Deployment",
-    description: "Launch, testing, optimization, and ongoing support",
-    icon: Zap,
-    duration: "1-2 weeks",
-  },
-];
+export const metadata: Metadata = {
+  title: "About Us",
+  description: "Discover the story behind our mission and values.",
+};
 
 const MissionVisionSection = () => {
   return (
