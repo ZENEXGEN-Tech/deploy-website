@@ -124,7 +124,7 @@ const services = [
   },
 ];
 
-const categories = [
+const categoriess = [
   { name: "All", count: services.length },
   {
     name: "Development",
@@ -203,7 +203,7 @@ export default function Services() {
           </div>
 
           {/* Client Component for filtering */}
-          <ServicesFilter services={servicesData} categories={categories} />
+          <ServicesFilter services={servicesData} categories={categoriess} />
         </div>
       </section>
 
