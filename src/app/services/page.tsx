@@ -16,6 +16,154 @@ import {
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Banner } from "@/components/Banner";
+
+const services = [
+  {
+    id: "custom-software-development",
+    icon: Code2,
+    title: "Custom Software Development",
+    shortDescription:
+      "Tailored software solutions built with cutting-edge technologies to meet your unique business requirements.",
+    features: [
+      "Full-stack development",
+      "Scalable architecture",
+      "Modern frameworks",
+    ],
+    category: "Development",
+    gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
+    iconBg: "from-emerald-500 to-teal-600",
+    accent: "text-emerald-500",
+  },
+  {
+    id: "ai-machine-learning",
+    icon: Brain,
+    title: "AI & Machine Learning",
+    shortDescription:
+      "Intelligent solutions that learn, adapt, and optimize your business processes for maximum efficiency.",
+    features: [
+      "Predictive analytics",
+      "Natural language processing",
+      "Computer vision",
+    ],
+    category: "AI/ML",
+    gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
+    iconBg: "from-emerald-500 to-teal-600",
+    accent: "text-emerald-500",
+  },
+  {
+    id: "web-mobile-apps",
+    icon: Smartphone,
+    title: "Web & Mobile Apps",
+    shortDescription:
+      "Responsive web applications and native mobile apps that provide exceptional user experiences.",
+    features: [
+      "Cross-platform development",
+      "Progressive web apps",
+      "Native performance",
+    ],
+    category: "Development",
+    gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
+    iconBg: "from-emerald-500 to-teal-600",
+    accent: "text-emerald-500",
+  },
+  {
+    id: "automation-digital-transformation",
+    icon: Zap,
+    title: "Automation & Digital Transformation",
+    shortDescription:
+      "Streamline operations and accelerate growth through intelligent automation and digital innovation.",
+    features: ["Process automation", "Digital workflows", "System integration"],
+    category: "Automation",
+    gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
+    iconBg: "from-emerald-500 to-teal-600",
+    accent: "text-emerald-500",
+  },
+  {
+    id: "cybersecurity-solutions",
+    icon: Shield,
+    title: "Cybersecurity Solutions",
+    shortDescription:
+      "Comprehensive security frameworks to protect your digital assets and ensure compliance.",
+    features: [
+      "Security audits",
+      "Penetration testing",
+      "Compliance frameworks",
+    ],
+    category: "Security",
+    gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
+    iconBg: "from-emerald-500 to-teal-600",
+    accent: "text-emerald-500",
+  },
+  {
+    id: "data-analytics",
+    icon: Database,
+    title: "Data Analytics & Business Intelligence",
+    shortDescription:
+      "Transform raw data into actionable insights that drive strategic business decisions.",
+    features: [
+      "Data visualization",
+      "Real-time analytics",
+      "Predictive modeling",
+    ],
+    category: "Analytics",
+    gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
+    iconBg: "from-emerald-500 to-teal-600",
+    accent: "text-emerald-500",
+  },
+  {
+    id: "iot-solutions",
+    icon: Cpu,
+    title: "IoT Solutions",
+    shortDescription:
+      "Connected device ecosystems that enable smart automation and real-time monitoring.",
+    features: ["Device connectivity", "Edge computing", "Real-time monitoring"],
+    category: "IoT",
+    gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
+    iconBg: "from-emerald-500 to-teal-600",
+    accent: "text-emerald-500",
+  },
+];
+
+const categories = [
+  { name: "All", count: services.length },
+  {
+    name: "Development",
+    count: services.filter((s) => s.category === "Development").length,
+  },
+  {
+    name: "AI/ML",
+    count: services.filter((s) => s.category === "AI/ML").length,
+  },
+  {
+    name: "Automation",
+    count: services.filter((s) => s.category === "Automation").length,
+  },
+  {
+    name: "Infrastructure",
+    count: services.filter((s) => s.category === "Infrastructure").length,
+  },
+  {
+    name: "Security",
+    count: services.filter((s) => s.category === "Security").length,
+  },
+  {
+    name: "Analytics",
+    count: services.filter((s) => s.category === "Analytics").length,
+  },
+  { name: "IoT", count: services.filter((s) => s.category === "IoT").length },
+];
+
+const stats = [
+  {
+    icon: CheckCircle,
+    number: "100+",
+    label: "Projects Delivered",
+    sublabel: "Successfully",
+  },
+  { icon: Star, number: "98%", label: "Client Satisfaction", sublabel: "Rate" },
+  { icon: Zap, number: "24/7", label: "Support", sublabel: "Available" },
+  { icon: Brain, number: "50+", label: "AI Models", sublabel: "Deployed" },
+];
 import { ServicesFilter } from "@/components/services/ServicesFilter";
 import { categories, servicesData, stats } from "@/data";
 
