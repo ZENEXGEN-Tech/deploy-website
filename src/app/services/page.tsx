@@ -153,7 +153,7 @@ const categoriess = [
   { name: "IoT", count: services.filter((s) => s.category === "IoT").length },
 ];
 
-const stats = [
+const stat = [
   {
     icon: CheckCircle,
     number: "100+",
