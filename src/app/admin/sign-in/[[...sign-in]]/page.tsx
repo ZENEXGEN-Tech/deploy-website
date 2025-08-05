@@ -1,6 +1,6 @@
 "use client";
 
-import { SignIn } from "@clerk/nextjs";
+import { SignIn, SignUp } from "@clerk/nextjs";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -51,6 +51,16 @@ export default function AdminSignInPage() {
           redirectUrl="/admin"
           signUpUrl="/admin/sign-up"
           afterSignInUrl="/admin"
+        />
+        <SignUp
+          appearance={{
+            elements: {
+              formButtonPrimary: "bg-black hover:bg-gray-800",
+              footerActionLink: "text-black hover:text-gray-800",
+            },
+          }}
+          redirectUrl="/admin"
+          signInUrl="/admin/sign-in"
         />
       </div>
     </div>
