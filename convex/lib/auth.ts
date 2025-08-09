@@ -5,8 +5,9 @@ import { UserIdentity } from "convex/server";
  * Get admin emails from environment variables
  */
 function getAdminEmails(): string[] {
-  const adminEmailsString =
-    process.env.ADMIN_EMAILS || process.env.NEXT_PUBLIC_EMAIL_ADDRESSS || "";
+  const adminEmailsString = "masabmbz5@gmail.com,mashal@zenexgen.com";
+
+  console.log(adminEmailsString, "ADMIN FRO ENV");
 
   if (!adminEmailsString) {
     console.warn("No admin emails configured in environment variables");
@@ -26,6 +27,8 @@ export function isAdminEmail(email: string | undefined): boolean {
   if (!email) return false;
 
   const adminEmails = getAdminEmails();
+  console.log(adminEmails);
+
   return adminEmails.map((e) => e.toLowerCase()).includes(email.toLowerCase());
 }
 
