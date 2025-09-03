@@ -79,19 +79,6 @@ const WhyZenexgenSection = () => {
             </div>
           ))}
         </div>
-
-        <div className="mt-20 text-center">
-          <div className="w-24 h-24 bg-gradient-primary rounded-3xl flex items-center justify-center mx-auto mb-8 hover:rotate-12 transition-transform duration-500">
-            <Rocket className="h-12 w-12 text-primary-foreground" />
-          </div>
-          <h3 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Transform Your Business?
-          </h3>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            Join forward-thinking companies who trust ZENEXGEN to deliver
-            exceptional software solutions
-          </p>
-        </div>
       </div>
     </section>
   );
