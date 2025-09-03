@@ -1,3 +1,4 @@
+import Link from "next/link"; // ✅ import Link for navigation
 import { Code2, Brain, Smartphone, Zap, ArrowRight } from "lucide-react";
 
 const ServicesSection = () => {
@@ -14,6 +15,7 @@ const ServicesSection = () => {
       ],
       gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
       iconBg: "from-emerald-500 to-teal-600",
+      link: "/services/custom-software-development", // ✅ add link
     },
     {
       icon: Brain,
@@ -27,6 +29,7 @@ const ServicesSection = () => {
       ],
       gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
       iconBg: "from-emerald-500 to-teal-600",
+      link: "/services/ai-machine-learning", // ✅ add link
     },
     {
       icon: Smartphone,
@@ -40,6 +43,7 @@ const ServicesSection = () => {
       ],
       gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
       iconBg: "from-emerald-500 to-teal-600",
+      link: "/services/web-mobile-apps", // ✅ add link
     },
     {
       icon: Zap,
@@ -53,6 +57,7 @@ const ServicesSection = () => {
       ],
       gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
       iconBg: "from-emerald-500 to-teal-600",
+      link: "/services/automation-digital-transformation", // ✅ add link
     },
   ];
 
@@ -108,10 +113,13 @@ const ServicesSection = () => {
                   ))}
                 </div>
 
-                <div className="flex items-center text-primary group-hover:text-primary-glow transition-colors cursor-pointer">
-                  <span className="text-sm font-medium">Learn more</span>
-                  <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </div>
+                {/* ✅ "Learn more" link */}
+                <Link href={service.link}>
+                  <div className="flex items-center text-primary group-hover:text-primary-glow transition-colors cursor-pointer">
+                    <span className="text-sm font-medium">Learn more</span>
+                    <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </Link>
               </div>
             </div>
           ))}
